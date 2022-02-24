@@ -36,6 +36,8 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
+      <NuxtLink to="/">TOP</NuxtLink>
+      <v-btn nuxt to="/">TOP</v-btn>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -85,7 +87,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'Froutes',
     }
   },
 }
