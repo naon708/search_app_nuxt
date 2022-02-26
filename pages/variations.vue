@@ -47,7 +47,6 @@ export default {
       const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
         this.variation_programs.push(doc.data());
-        console.log(this.variation_programs);
       });
     } catch (e) {
       console.error("Error:", e);

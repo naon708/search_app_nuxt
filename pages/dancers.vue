@@ -29,8 +29,6 @@ export default {
       const querySnapshot = await getDocs(collection(db, "dancers"));
       querySnapshot.forEach((doc) => {
         this.dancers.push(doc.data());
-        // console.log(this.dancers);
-        // console.log(`文字列に変換: ${JSON.stringify(doc)}`);
       });
     } catch (e) {
       console.error("Error:", e);

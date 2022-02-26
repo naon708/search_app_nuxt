@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>演目</h3>
+    <h3>演目から好きなシーンを探す</h3>
     <div v-for="program of programs" :key="program.id">
       <v-card
         class="mb-4 pl-4"
@@ -27,8 +27,7 @@ export default {
   data() {
     return {
       programs: [],
-      scenes: [],
-      test: []
+      scenes: []
     }
   },
   async created() {
@@ -50,9 +49,6 @@ export default {
       const querySnapshot = await getDocs(collection(db, "scenes"));
       querySnapshot.forEach((doc) => {
         this.scenes.push(doc.data());
-        console.log('-------');
-        console.log(`idだよ${doc.id}`);
-        console.log(`japanese_nameだよ${doc.data().japanese_name}`);
       });
     } catch (e) {
       console.error("Error:", e);
