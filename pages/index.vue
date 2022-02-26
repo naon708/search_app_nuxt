@@ -7,7 +7,7 @@
       コンクールの課題曲
     </v-card>
     <v-card class="mb-4 pl-4" nuxt to="steps">
-      パ（ステップ）を調べる
+      パ / ステップを調べる
     </v-card>
     <v-card class="mb-4 pl-4" nuxt to="dancers">
       ダンサーリスト

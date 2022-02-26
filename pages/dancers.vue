@@ -1,11 +1,15 @@
 <template>
   <div>
     <h3>ダンサー</h3>
-    <div v-for="(title, index) of titles" :key="`1${index}`">
-      {{ title }}
-    </div>
-    <div v-for="(dancer, index) of dancers" :key="index">
-      {{ dancer.japanese_name }} / {{ dancer.universal_name }} / {{ dancer.russian_name }}
+    <div v-for="dancer of dancers" :key="dancer.japanese_name">
+      <v-card
+        class="mb-4 pl-4"
+        :href="forSearch(dancer.universal_name)"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ dancer.japanese_name }}
+      </v-card>
     </div>
   </div>
 </template>
@@ -16,7 +20,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 export default {
   data() {
     return {
-      titles: [],
       dancers: []
     }
   },
@@ -25,13 +28,17 @@ export default {
       const db = getFirestore(this.$firebaseApp);
       const querySnapshot = await getDocs(collection(db, "dancers"));
       querySnapshot.forEach((doc) => {
-        this.titles.push(doc.id);
         this.dancers.push(doc.data());
-        console.log(this.dancers);
-        // console.log(`これ: ${JSON.stringify(doc)}`);
+        // console.log(this.dancers);
+        // console.log(`文字列に変換: ${JSON.stringify(doc)}`);
       });
     } catch (e) {
       console.error("Error:", e);
+    }
+  },
+  methods: {
+    forSearch(word) {
+      return `https://www.youtube.com/results?search_query=ballet+${word}`
     }
   }
 }
