@@ -1,12 +1,64 @@
 <template>
   <div>
-    <h3>演目</h3>
+    <h3>演目から好きなシーンを探す</h3>
+    <div v-for="program of programs" :key="program.id">
+      <v-card
+        class="mb-4 pl-4"
+        :href="forSearch(program.universal_name)"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ program.japanese_name }}
+      </v-card>
+      <div v-for="scene of scenes" :key="scene.id" class="ml-4">
+        <div v-if="scene.program_id === program.japanese_name">
+          {{ scene.japanese_name }}
+        </div>
+      </div>
+      <br>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import { getFirestore, collection, getDocs, orderBy, query } from "firebase/firestore";
 
+export default {
+  data() {
+    return {
+      programs: [],
+      scenes: []
+    }
+  },
+  async created() {
+    try {
+      const db = getFirestore(this.$firebaseApp);
+      const programsRef = collection(db, "programs");
+      const sortQuery = query(programsRef, orderBy("id"));
+
+      const querySnapshot = await getDocs(sortQuery);
+      querySnapshot.forEach((doc) => {
+        this.programs.push(doc.data());
+      });
+    } catch (e) {
+      console.error("Error:", e);
+    }
+    try {
+      const db = getFirestore(this.$firebaseApp);
+
+      const querySnapshot = await getDocs(collection(db, "scenes"));
+      querySnapshot.forEach((doc) => {
+        this.scenes.push(doc.data());
+      });
+    } catch (e) {
+      console.error("Error:", e);
+    }
+  },
+  methods: {
+    forSearch(word) {
+      return `https://www.youtube.com/results?search_query=ballet+${word}`
+    }
+  }
 }
 </script>
 

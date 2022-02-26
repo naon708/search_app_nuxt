@@ -36,7 +36,6 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
-      <NuxtLink to="/">TOP</NuxtLink>
       <v-btn nuxt to="/">TOP</v-btn>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
