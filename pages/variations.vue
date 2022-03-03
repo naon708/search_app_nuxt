@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>コンクールの課題曲</h3>
-    <div v-for="program of variation_programs" :key="program.id">
+    <div v-for="program of variation_programs" :key="program.id" class="text-center">
       {{ program.name }}
       <div v-for="variation of variations" :key="variation.title" class="ml-4">
         <v-card
