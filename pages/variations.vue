@@ -6,12 +6,12 @@
       <div v-for="variation of variations" :key="variation.id" class="ml-4">
         <v-card
           class="mb-4 pl-4"
-          :href="forSearch(variation.universal_name)"
+          :href="forSearch(variation.universal_notation)"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div v-if="program.name === variation.program_name">
-            {{ variation.japanese_name }}
+          <div v-if="program.name === variation.program_notation">
+            {{ variation.japanese_notation }}
           </div>
         </v-card>
       </div>

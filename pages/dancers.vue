@@ -1,14 +1,14 @@
 <template>
   <div>
     <h3>ダンサー</h3>
-    <div v-for="dancer of dancers" :key="dancer.japanese_name">
+    <div v-for="dancer of dancers" :key="dancer.japanese_notation">
       <v-card
         class="mb-4 pl-4"
-        :href="forSearch(dancer.universal_name)"
+        :href="forSearch(dancer.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ dancer.japanese_name }}
+        {{ dancer.japanese_notation }}
       </v-card>
     </div>
   </div>

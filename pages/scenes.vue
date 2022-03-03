@@ -4,15 +4,15 @@
     <div v-for="program of programs" :key="program.id">
       <v-card
         class="mb-4 pl-4"
-        :href="forSearch(program.universal_name)"
+        :href="forSearch(program.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ program.japanese_name }}
+        {{ program.japanese_notation }}
       </v-card>
       <div v-for="scene of scenes" :key="scene.id" class="ml-4">
-        <div v-if="scene.program_id === program.japanese_name">
-          {{ scene.japanese_name }}
+        <div v-if="scene.program_id === program.japanese_notation">
+          {{ scene.japanese_notation }}
         </div>
       </div>
       <br>

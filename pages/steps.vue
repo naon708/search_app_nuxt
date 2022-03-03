@@ -1,14 +1,14 @@
 <template>
   <div>
     <h3>パ / ステップを調べる</h3>
-    <div v-for="step of steps" :key="step.japanese_name">
+    <div v-for="step of steps" :key="step.japanese_notation">
       <v-card
         class="mb-4 pl-4"
-        :href="forSearch(step.universal_name)"
+        :href="forSearch(step.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ step.japanese_name }}
+        {{ step.japanese_notation }}
       </v-card>
     </div>
   </div>
