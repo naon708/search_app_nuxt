@@ -3,15 +3,15 @@
     <h3>コンクールの課題曲</h3>
     <div v-for="program of variation_programs" :key="program.id">
       {{ program.name }}
-      <div v-for="variation of variations" :key="variation.id" class="ml-4">
+      <div v-for="variation of variations" :key="variation.title" class="ml-4">
         <v-card
           class="mb-4 pl-4"
           :href="forSearch(variation.universal_notation)"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div v-if="program.name === variation.program_notation">
-            {{ variation.japanese_notation }}
+          <div v-if="program.name === variation.program_name">
+            {{ variation.title }}
           </div>
         </v-card>
       </div>

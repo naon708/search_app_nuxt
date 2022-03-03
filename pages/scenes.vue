@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>演目から好きなシーンを探す</h3>
-    <div v-for="program of programs" :key="program.id">
+    <div v-for="program of programs" :key="program.furigana">
       <v-card
         class="mb-4 pl-4"
         :href="forSearch(program.universal_notation)"
@@ -11,7 +11,7 @@
         {{ program.japanese_notation }}
       </v-card>
       <div v-for="scene of scenes" :key="scene.id" class="ml-4">
-        <div v-if="scene.program_id === program.japanese_notation">
+        <div v-if="scene.program_name === program.japanese_notation">
           {{ scene.japanese_notation }}
         </div>
       </div>
@@ -34,7 +34,7 @@ export default {
     try {
       const db = getFirestore(this.$firebaseApp);
       const programsRef = collection(db, "programs");
-      const sortQuery = query(programsRef, orderBy("id"));
+      const sortQuery = query(programsRef, orderBy("furigana"));
 
       const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
