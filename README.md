@@ -1,68 +1,75 @@
-# nuxt
+# **サービス概要**
 
-## Build Setup
+YouTube検索補助アプリ。
 
-```bash
-# install dependencies
-$ npm install
+「バレエ用語は癖が強く、検索しづらい！」そんな悩みを抱えるバレエ好きに向けた、
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+バレエ動画の視聴が止まらなくなるサービスです。
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+### **メインのターゲットユーザー**
 
-# generate static project
-$ npm run generate
-```
+- 現役のプロバレエダンサー、男女、20〜30代。
+- バレエを習っている、女子、高校生以下。
+- バレエ鑑賞が趣味、女性、40〜60代。
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+### **ユーザーが抱える課題**
 
-## Special Directories
+YouTubeのバレエ動画視聴において、
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+- 検索のためにスペルを調べるのが面倒。
+    - 作品名、振付家名、ダンサー名など。
+    - ロシア語、フランス語などで検索したいケースもある。
+- 振り付けを覚えるために、映像を鏡のようにできると嬉しい。
 
-### `assets`
+### **解決方法**
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+以下の機能を提供する。
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+- 日本人に親しみのある日本語のUIから、直接外国語でYouTube検索ができる。
+- 動画を左右反転させて閲覧ができる。
 
-### `components`
+### **実装予定の機能**
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+基本機能
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+- ビューに表示されている日本語のリンクを押下すると、それに対応するバレエ用語で検索された状態のYouTube検索結果画面に遷移する。
+- 検索ワードをユーザーが自由に組み合わせて検索できる。
 
-### `layouts`
+〜〜〜〜〜ここまででRUNTEQ内リリース＆本リリース〜〜〜〜〜
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+追加機能
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+- 動画を反転させて視聴できる。
+- ランキング形式で人気の動画を表示
+- チュートリアル
 
-### `pages`
+検討中の機能
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+- YouTubeアプリに遷移させず、アプリ内で検索、視聴を完結させる。
+- バレエ動画をレコメンドする。
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+### **なぜこのサービスを作りたいのか？**
 
-### `plugins`
+私自身およそ8年、プロのバレエダンサーとして働いてきました。
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+幸運なことにYouTubeでは、ダンサーとして大変参考になる動画が視聴できます。それらを活用し、振り付けを覚え、音楽を聴き、先人たちの表現から学びを得ました。
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+そんな貴重なコンテンツをもっと見やすくできたら。と考え、それを提供することで
 
-### `static`
+現役のダンサー、プロを目指す生徒、ファンの方々の、バレエに触れる時間が少しでも長くなれば良いなという思いから、このサービスを作ろうと決心しました。
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+### **スケジュール**
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+- 技術調査、README：2/2
+- 画面遷移図：2/4
+- テーブル設計、ER図：2/6
+- メイン機能実装：2/6 〜 2/24
+- MVPリリース：2/24
+- 本番リリース：2/27
+- 追加機能実装：2/27 〜
+- Done：3/31
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+### 画面遷移図
+https://www.figma.com/file/lsv4Y8c5onHsUPWcx5eWWL/Untitled?node-id=3%3A14
+### ER図
+https://gyazo.com/5cb5ef6a3173808042e3a11d3e2002dc
