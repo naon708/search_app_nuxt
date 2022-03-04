@@ -1,20 +1,20 @@
 <template>
   <div>
-    <h3>コンクールの課題曲</h3>
     <div v-for="program of variation_programs" :key="program.id">
-      {{ program.name }}
-      <div v-for="variation of variations" :key="variation.title" class="ml-4">
+      <p class="text-center text-h5">{{ program.name }}</p>
+      <div v-for="variation of variations" :key="variation.title">
         <v-card
-          class="mb-4 pl-4"
+          v-if="program.name === variation.program_name"
+          class="mb-2 pl-2 d-flex align-center justify-center"
+          height="10vh"
           :href="forSearch(variation.universal_notation)"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div v-if="program.name === variation.program_name">
             {{ variation.title }}
-          </div>
         </v-card>
       </div>
+      <br>
     </div>
   </div>
 </template>

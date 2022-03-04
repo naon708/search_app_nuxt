@@ -1,16 +1,16 @@
 <template>
   <div>
-    <v-card class="ma-2 d-flex align-center justify-center" nuxt to="scenes" height="20vh">
-      演目から好きなシーンを探す
+    <v-card class="ma-2 d-flex align-center justify-center" nuxt to="programs" height="20vh">
+      バレエの演目を検索
     </v-card>
     <v-card class="ma-2 d-flex align-center justify-center" nuxt to="variations" height="20vh">
-      コンクールの課題曲
+      ヴァリエーションを検索
     </v-card>
     <v-card class="ma-2 d-flex align-center justify-center" nuxt to="steps" height="20vh">
-      パ / ステップを調べる
+      パ / ステップ名で検索
     </v-card>
     <v-card class="ma-2 d-flex align-center justify-center" nuxt to="dancers" height="20vh">
-      ダンサーリスト
+      バレエダンサーを検索
     </v-card>
   </div>
 </template>

@@ -1,38 +1,43 @@
 <template>
   <div>
-    <div v-for="dancer of dancers.sort()" :key="dancer.japanese_notation">
+    <!-- タブ -->
+    <v-tabs background-color="yellow lighten-5" class="mb-2">
+      <v-tab>Item One</v-tab>
+      <v-tab>Item Two</v-tab>
+      <v-tab>Item Three</v-tab>
+    </v-tabs>
+    <div v-for="program of programs" :key="program.furigana">
       <v-card
         class="mb-2 pl-2 d-flex align-center justify-center"
         height="10vh"
-        :href="forSearch(dancer.universal_notation)"
+        :href="forSearch(program.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
-        outlined
       >
-        {{ dancer.japanese_notation }}
+        {{ program.japanese_notation }}
       </v-card>
     </div>
   </div>
 </template>
 
 <script>
-import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
+import { getFirestore, collection, getDocs, orderBy, query } from "firebase/firestore";
 
 export default {
   data() {
     return {
-      dancers: []
+      programs: []
     }
   },
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);
-      const dancersRef = collection(db, "dancers");
-      const sortQuery = query(dancersRef, orderBy("japanese_notation"));
+      const programsRef = collection(db, "programs");
+      const sortQuery = query(programsRef, orderBy("furigana"));
 
       const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
-        this.dancers.push(doc.data());
+        this.programs.push(doc.data());
       });
     } catch (e) {
       console.error("Error:", e);
@@ -44,7 +49,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
