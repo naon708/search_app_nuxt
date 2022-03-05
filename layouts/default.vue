@@ -24,15 +24,15 @@
       </v-list>
     </v-navigation-drawer>
     <!-- Header Bar -->
-    <v-app-bar :clipped-left="clipped" color="yellow lighten-3" fixed app>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
+      <v-icon>{{ title }}</v-icon>      
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container >
         <Nuxt />
       </v-container>
     </v-main>
@@ -52,27 +52,27 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-arrow-u-left-top',
           title: 'トップページ',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-subtitles-outline',
           title: '演目',
-          to: '/scenes',
+          to: '/programs',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-shoe-ballet',
           title: 'ヴァリエーション',
           to: '/variations',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-human-female-dance',
           title: 'パ / ステップ',
           to: '/steps',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-star-outline',
           title: 'ダンサー',
           to: '/dancers',
         },

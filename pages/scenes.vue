@@ -10,7 +10,7 @@
       >
         {{ program.japanese_notation }}
       </v-card>
-      <div v-for="scene of scenes" :key="scene.id" class="ml-4">
+      <div v-for="scene of scenes" :key="scene.id">
         <div v-if="scene.program_name === program.japanese_notation">
           {{ scene.japanese_notation }}
         </div>

@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h3>パ / ステップを調べる</h3>
     <div v-for="step of steps" :key="step.japanese_notation">
       <v-card
-        class="mb-4 pl-4"
+        class="mb-2 pl-2 d-flex align-center justify-center"
+        height="10vh"
         :href="forSearch(step.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
+        :elevation="1"
       >
         {{ step.japanese_notation }}
       </v-card>
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export default {
   data() {
@@ -26,7 +27,10 @@ export default {
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);
-      const querySnapshot = await getDocs(collection(db, "steps"));
+      const stepsRef = collection(db, "steps");
+      const sortQuery = query(stepsRef, orderBy("japanese_notation"));
+
+      const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
         this.steps.push(doc.data());
       });

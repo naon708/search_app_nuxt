@@ -1,20 +1,27 @@
 <template>
   <div>
-    <h3>コンクールの課題曲</h3>
-    <div v-for="program of variation_programs" :key="program.id" class="text-center">
-      {{ program.name }}
-      <div v-for="variation of variations" :key="variation.title" class="ml-4">
+    <div v-for="program of variation_programs" :key="program.id">
+      <!-- 演目名 -->
+      <p class="mt-5 text-center text-h5">
+        <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
+          {{ program.name }}
+        </span>
+      </p>
+      <div v-for="variation of variations" :key="variation.title">
+        <!-- ヴァリエーションタイトル -->
         <v-card
-          class="mb-4 pl-4"
+          v-if="program.name === variation.program_name"
+          class="mb-2 pl-2 d-flex align-center justify-center"
+          height="10vh"
+          :elevation="1"
           :href="forSearch(variation.universal_notation)"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div v-if="program.name === variation.program_name">
             {{ variation.title }}
-          </div>
         </v-card>
       </div>
+      <br>
     </div>
   </div>
 </template>
@@ -32,7 +39,10 @@ export default {
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);
-      const querySnapshot = await getDocs(collection(db, "variations"));
+      const variationsRef = collection(db, "variations");
+      const sortQuery = query(variationsRef, orderBy("title"));
+
+      const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
         this.variations.push(doc.data());
       });
@@ -54,7 +64,7 @@ export default {
   },
   methods: {
     forSearch(word) {
-      return `https://www.youtube.com/results?search_query=ballet+${word}`
+      return `https://www.youtube.com/results?search_query=${word}+ballet`
     }
   }
 }

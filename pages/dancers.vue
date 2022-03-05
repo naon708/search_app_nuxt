@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h3>ダンサー</h3>
     <div v-for="dancer of dancers" :key="dancer.japanese_notation">
       <v-card
-        class="mb-4 pl-4"
+        class="mb-2 pl-2 d-flex align-center justify-center"
+        height="10vh"
         :href="forSearch(dancer.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
+        :elevation="1"
       >
         {{ dancer.japanese_notation }}
       </v-card>
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export default {
   data() {
@@ -26,7 +27,10 @@ export default {
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);
-      const querySnapshot = await getDocs(collection(db, "dancers"));
+      const dancersRef = collection(db, "dancers");
+      const sortQuery = query(dancersRef, orderBy("japanese_notation"));
+
+      const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
         this.dancers.push(doc.data());
       });
