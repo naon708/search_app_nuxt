@@ -2,7 +2,7 @@
   <div>
     <div v-for="dancer of dancers" :key="dancer.japanese_notation">
       <v-card
-        class="mb-2 pl-2 d-flex align-center justify-center"
+        class="mb-2 d-flex align-center justify-center text--secondary"
         height="10vh"
         :href="forSearch(dancer.universal_notation)"
         target="_blank"

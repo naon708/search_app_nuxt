@@ -2,7 +2,7 @@
   <div>
     <div v-for="program of variation_programs" :key="program.id">
       <!-- 演目名 -->
-      <p class="mt-5 text-center text-h5">
+      <p class="mt-5 text-center text-h5 text--secondary">
         <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
           {{ program.name }}
         </span>
@@ -11,7 +11,7 @@
         <!-- ヴァリエーションタイトル -->
         <v-card
           v-if="program.name === variation.program_name"
-          class="mb-2 pl-2 d-flex align-center justify-center"
+          class="mb-2 d-flex align-center justify-center text--secondary"
           height="10vh"
           :elevation="1"
           :href="forSearch(variation.universal_notation)"

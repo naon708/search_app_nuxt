@@ -2,7 +2,7 @@
   <div>
     <div v-for="step of steps" :key="step.japanese_notation">
       <v-card
-        class="mb-2 pl-2 d-flex align-center justify-center"
+        class="mb-2 d-flex align-center justify-center text--secondary"
         height="10vh"
         :href="forSearch(step.universal_notation)"
         target="_blank"
