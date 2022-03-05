@@ -7,6 +7,7 @@
         :href="forSearch(step.universal_notation)"
         target="_blank"
         rel="noopener noreferrer"
+        :elevation="1"
       >
         {{ step.japanese_notation }}
       </v-card>

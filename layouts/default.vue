@@ -25,7 +25,7 @@
     </v-navigation-drawer>
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
-      <v-toolbar-title v-text="title" />
+      <v-icon>{{ title }}</v-icon>      
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
