@@ -11,23 +11,31 @@
     <v-dialog v-model="dialog" width="500">
 
       <v-card>
-        <v-card-title class="text-h5">{{ title }}</v-card-title>
-        <v-card-text>てすとぶんしょう</v-card-text>
+        <v-card-title class="justify-center text-h6 text--secondary">
+          {{ title }}
+        </v-card-title>
         <v-card-actions class="justify-center">
-          <v-btn
-            color="primary"
-            :href="url"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            自動翻訳して検索する
-            <!-- forSearch(program.universal_notation) -->
+          <v-btn color="indigo" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <v-icon left>mdi-youtube</v-icon>
+            このまま検索する
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions class="justify-center">
+          <v-btn color="indigo" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <v-icon left>mdi-youtube</v-icon>
+            翻訳して検索する
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions class="mb-4 justify-center">
+          <v-btn color="indigo" href="https://google.com" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <div class="d-flex justify-left"><v-icon left>mdi-wikipedia</v-icon></div>
+            ウィキペディアで調べる
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
-        <v-card-actions>
+        <v-card-actions class="pt-1">
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false">
+          <v-btn color="secondary" text @click="dialog = false">
             閉じる
           </v-btn>
         </v-card-actions>
@@ -37,7 +45,7 @@
 
     <div v-for="program of programs" :key="program.furigana">
       <v-card
-        class="mb-2 d-flex align-center justify-center"
+        class="mb-2 d-flex align-center justify-center text--secondary"
         height="10vh"
         :elevation="1"
         @click="openDialog(); insertInDialog(program)"
@@ -58,7 +66,8 @@ export default {
       programs: [],
       dialog: false,
       title: '',
-      url: ''
+      japaneseUrl: '',
+      translateUrl: ''
     }
   },
   async created() {
@@ -76,15 +85,19 @@ export default {
     }
   },
   methods: {
-    forSearch(word) {
-      return `https://www.youtube.com/results?search_query=ballet+${word}`
-    },
     openDialog() {
       this.dialog = true;
     },
     insertInDialog(detail) {
       this.title = detail.japanese_notation;
-      this.url = this.forSearch(detail.universal_notation);
+      this.japaneseUrl = this.japaneseSearch(detail.japanese_notation);
+      this.translateUrl = this.translateSearch(detail.universal_notation);
+    },
+    japaneseSearch(word) {
+      return `https://www.youtube.com/results?search_query=${word}+バレエ`
+    },
+    translateSearch(word) {
+      return `https://www.youtube.com/results?search_query=${word}+ballet`
     }
   }
 }
