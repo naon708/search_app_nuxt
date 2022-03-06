@@ -11,33 +11,41 @@
     <v-dialog v-model="dialog" width="500">
 
       <v-card>
-        <v-card-title class="text-h5">{{ title }}</v-card-title>
-        <v-card-text>てすとぶんしょう</v-card-text>
-        <v-card-actions class="justify-center">
-          <v-btn
-            color="primary"
-            :href="url"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            自動翻訳して検索する
-            <!-- forSearch(program.universal_notation) -->
+        <v-card-title class="justify-center text-h6 text--secondary">
+          {{ title }}
+        </v-card-title>
+        <v-card-actions class="mb-2 justify-center">
+          <v-btn color="indigo" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <v-icon left>mdi-youtube</v-icon>
+            <span class="text-body-1">このまま検索する</span>
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions class="mb-2 justify-center">
+          <v-btn color="indigo" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <v-icon left>mdi-youtube</v-icon>
+            <span class="text-body-1">翻訳して検索する</span>
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions v-show="wikipediaUrl" class="mb-4 justify-center">
+          <v-btn color="indigo" :href="wikipediaUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+            <v-icon left>mdi-wikipedia</v-icon>
+            <span class="text-body-1">ウィキペディアで調べる</span>
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
-        <v-card-actions>
+        <v-card-actions class="pt-1">
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false">
+          <v-btn color="secondary" text @click="dialog = false">
             閉じる
           </v-btn>
         </v-card-actions>
       </v-card>
-
     </v-dialog>
 
+    <!-- 演目リスト -->
     <div v-for="program of programs" :key="program.furigana">
       <v-card
-        class="mb-2 d-flex align-center justify-center"
+        class="mb-2 d-flex align-center justify-center text--secondary"
         height="10vh"
         :elevation="1"
         @click="openDialog(); insertInDialog(program)"
@@ -58,7 +66,14 @@ export default {
       programs: [],
       dialog: false,
       title: '',
-      url: ''
+      japaneseUrl: '',
+      translateUrl: '',
+      wikipediaUrl: ''
+    }
+  },
+  watch: {
+    dialog() {
+      this.resetDialog();
     }
   },
   async created() {
@@ -76,15 +91,33 @@ export default {
     }
   },
   methods: {
-    forSearch(word) {
-      return `https://www.youtube.com/results?search_query=ballet+${word}`
-    },
     openDialog() {
       this.dialog = true;
     },
     insertInDialog(detail) {
       this.title = detail.japanese_notation;
-      this.url = this.forSearch(detail.universal_notation);
+      this.japaneseUrl = this.japaneseSearch(detail.japanese_notation);
+      this.translateUrl = this.translateSearch(detail.universal_notation);
+      if (detail.wikipedia_path) {
+        this.wikipediaUrl = this.wikipediaSearch(detail.wikipedia_path);
+      }
+    },
+    resetDialog() {
+      if (!this.dialog) {
+        this.title = ''
+        this.japaneseUrl = ''
+        this.translateUrl = ''
+        this.wikipediaUrl = ''
+      };
+    },
+    japaneseSearch(word) {
+      return `https://www.youtube.com/results?search_query=${word}+バレエ`
+    },
+    translateSearch(word) {
+      return `https://www.youtube.com/results?search_query=${word}+ballet`
+    },
+    wikipediaSearch(word) {
+      return `https://ja.wikipedia.org/wiki/${word}`
     }
   }
 }
