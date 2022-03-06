@@ -1,6 +1,6 @@
 <template>
-  <div id="top">
-    <!-- タブ -->
+  <div>
+    <!-- タブ（ToDo） -->
     <!-- <v-tabs background-color="yellow lighten-5" class="mb-2">
       <v-tab>有名な演目</v-tab>
       <v-tab>いろいろな演目</v-tab>
@@ -77,6 +77,7 @@ export default {
       this.resetDialog();
     }
   },
+  // Firestoreからデータ取得
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);
