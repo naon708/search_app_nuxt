@@ -15,7 +15,7 @@
           exact
         >
           <v-list-item-action>
-            <v-icon color="indigo">{{ item.icon }}</v-icon>
+            <v-icon color="brown lighten-1">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
@@ -25,9 +25,9 @@
     </v-navigation-drawer>
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
-      <v-icon>{{ title }}</v-icon>      
+      <v-icon color="brown darken-2">{{ title }}</v-icon>      
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-btn color="brown darken-2" icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
@@ -79,7 +79,7 @@ export default {
       ],
       right: true,
       rightDrawer: false,
-      title: 'Froutes',
+      title: 'PineApple',
     }
   },
 }

@@ -6,13 +6,13 @@
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="indigo" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="indigo" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>

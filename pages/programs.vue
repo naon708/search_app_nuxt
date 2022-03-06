@@ -14,19 +14,19 @@
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="indigo" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="indigo" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions v-show="wikipediaUrl" class="mb-4 justify-center">
-          <v-btn color="indigo" :href="wikipediaUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" :href="wikipediaUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
             <v-icon left>mdi-wikipedia</v-icon>
             <span class="text-body-1">ウィキペディアで調べる</span>
           </v-btn>
