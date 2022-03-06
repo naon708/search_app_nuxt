@@ -37,6 +37,7 @@
         {{ step.japanese_notation }}
       </v-card>
     </div>
+    <FloatingActionButton />
   </div>
 </template>
 

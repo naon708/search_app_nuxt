@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- タブ -->
+    <!-- タブ（ToDo） -->
     <!-- <v-tabs background-color="yellow lighten-5" class="mb-2">
       <v-tab>有名な演目</v-tab>
       <v-tab>いろいろな演目</v-tab>
@@ -9,7 +9,6 @@
 
     <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
-
       <v-card>
         <v-card-title class="justify-center text-h6 text--secondary">
           {{ title }}
@@ -53,14 +52,16 @@
         {{ program.japanese_notation }}
       </v-card>
     </div>
-    
+    <FloatingActionButton />
   </div>
 </template>
 
 <script>
 import { getFirestore, collection, getDocs, orderBy, query } from "firebase/firestore";
+import FloatingActionButton from '../components/FloatingActionButton.vue';
 
 export default {
+  components: { FloatingActionButton },
   data() {
     return {
       programs: [],
@@ -76,6 +77,7 @@ export default {
       this.resetDialog();
     }
   },
+  // Firestoreからデータ取得
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);

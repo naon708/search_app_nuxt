@@ -48,6 +48,7 @@
       </div>
       <br>
     </div>
+    <FloatingActionButton />
   </div>
 </template>
 
