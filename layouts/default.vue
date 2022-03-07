@@ -22,6 +22,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <template v-slot:append>
+        <v-list class="mb-8">
+          <Terms />
+          <PrivacyPolicy />
+        </v-list>
+      </template>
     </v-navigation-drawer>
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
@@ -36,14 +43,16 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <v-footer :absolute="!fixed" app class="justify-center">
+      <span style="color: #757575;">&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import PrivacyPolicy from '../components/PrivacyPolicy.vue'
 export default {
+  components: { PrivacyPolicy },
   name: 'DefaultLayout',
   data() {
     return {
