@@ -23,7 +23,7 @@
         </v-list-item>
       </v-list>
 
-      <template v-slot:append>
+      <template #append>
         <v-list class="mb-8">
           <Terms />
           <PrivacyPolicy />
@@ -32,7 +32,7 @@
     </v-navigation-drawer>
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
-      <v-icon color="brown darken-2">{{ title }}</v-icon>      
+      <v-icon color="brown darken-2">{{ title }}</v-icon>
       <v-spacer />
       <v-btn color="brown darken-2" icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -52,8 +52,8 @@
 <script>
 import PrivacyPolicy from '../components/PrivacyPolicy.vue'
 export default {
-  components: { PrivacyPolicy },
   name: 'DefaultLayout',
+  components: { PrivacyPolicy },
   data() {
     return {
       clipped: false,
@@ -88,7 +88,7 @@ export default {
       ],
       right: true,
       rightDrawer: false,
-      title: 'PineApple',
+      title: 'Pinap',
     }
   },
 }
