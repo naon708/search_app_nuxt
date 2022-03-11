@@ -48,7 +48,13 @@ export default {
     '@nuxtjs/pwa',
 
     '@nuxtjs/dotenv',
+    // https://google-analytics.nuxtjs.org/setup
+    '@nuxtjs/google-analytics',
   ],
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_KEY
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
