@@ -49,12 +49,12 @@ export default {
 
     '@nuxtjs/dotenv',
     // https://google-analytics.nuxtjs.org/setup
-    // '@nuxtjs/google-analytics',
+    '@nuxtjs/google-analytics',
   ],
 
-  // googleAnalytics: {
-  //   id: 'UA-222613208-1'
-  // },
+  googleAnalytics: {
+    id: GOOGLE_ANALYTICS_KEY
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
