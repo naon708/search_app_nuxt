@@ -53,7 +53,7 @@ export default {
   ],
 
   googleAnalytics: {
-    id: GOOGLE_ANALYTICS_KEY
+    id: process.env.GOOGLE_ANALYTICS_KEY
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
