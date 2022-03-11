@@ -14,8 +14,16 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'format-detection', content: 'telephone=no' }, // 電話番号を勝手にリンクにしないで（スマホ）
+      { name: 'keywords', content: 'バレエ, 動画, 演目, パ, ダンサー, ヴァリエーション' },
+      { hid: 'description', name: 'description', content: 'バレエ動画が検索しやすくなるサイトです' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'Pinap' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://pinap.jp' },
+      { hid: 'og:title', property: 'og:title', content: 'Pinap' },
+      { hid: 'og:description', property: 'og:description', content: 'バレエ用語をラクラク検索！' },
+      { hid: 'og:image', property: 'og:image', content: 'https://pinap.jp/avatar1.png' },
+      { name: 'twitter:card', content: 'summary_large_image' }  // twitterの画像サイズ
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
