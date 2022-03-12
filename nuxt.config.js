@@ -9,12 +9,12 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - nuxt',
-    title: 'nuxt',
+    // titleTemplate: '%s - Pinap',
+    title: 'Pinap',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'format-detection', content: 'telephone=no' }, // 電話番号を勝手にリンクにしないで（スマホ）
+      { name: 'format-detection', content: 'telephone=no' },
       { name: 'keywords', content: 'バレエ, 動画, 演目, パ, ダンサー, ヴァリエーション' },
       { hid: 'description', name: 'description', content: 'バレエ動画が検索しやすくなるサイトです' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Pinap' },
@@ -22,10 +22,10 @@ export default {
       { hid: 'og:url', property: 'og:url', content: 'https://pinap.jp' },
       { hid: 'og:title', property: 'og:title', content: 'Pinap' },
       { hid: 'og:description', property: 'og:description', content: 'バレエ用語をラクラク検索！' },
-      { hid: 'og:image', property: 'og:image', content: 'https://pinap.jp/avatar1.png' },
+      { hid: 'og:image', property: 'og:image', content: 'https://pinap.jp/pinap_ogp.png' },
       { name: 'twitter:card', content: 'summary_large_image' }  // twitterの画像サイズ
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/pinap.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -72,8 +72,20 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      // source: '/pinap_icon.png'
+      source: 'nuxt/static/pinap_icon_v2.png',
+      fileName: 'pinap_icon_v2.png'
+    },
     manifest: {
-      lang: 'en',
+      lang: 'ja',
+      name: 'Pinap',
+      short_name: 'Pinap',
+      title: 'Pinap',
+      description: 'バレエ用語をラクラク検索！',
+      theme_color: '#ffffff',
+      background_color: '#ffffff',
+      display: 'standalone',
     },
   },
 
