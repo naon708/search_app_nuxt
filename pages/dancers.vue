@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
-
 export default {
   data() {
     return {
@@ -56,14 +54,9 @@ export default {
   },
   async created() {
     try {
-      const db = getFirestore(this.$firebaseApp);
-      const dancersRef = collection(db, "dancers");
-      const sortQuery = query(dancersRef, orderBy("furigana"));
-
-      const querySnapshot = await getDocs(sortQuery);
-      querySnapshot.forEach((doc) => {
-        this.dancers.push(doc.data());
-      });
+      const response = await this.$axios.$get('api/dancers', { withCredentials: true })
+      console.log('dancers呼ばれた')
+      this.dancers = response
     } catch (e) {
       console.error("Error:", e);
     }

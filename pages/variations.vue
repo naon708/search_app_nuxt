@@ -34,10 +34,10 @@
           {{ program.name }}
         </span>
       </p>
-      <div v-for="variation of variations" :key="variation.title">
+      <div v-for="variation of variations" :key="variation.id">
         <!-- ヴァリエーションタイトル -->
         <v-card
-          v-if="variation.program_name === program.name"
+          v-if="variation.variation_program_id === program.id"
           class="mb-2 d-flex align-center justify-center text--secondary"
           height="10vh"
           :elevation="1"
@@ -53,8 +53,6 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
-
 export default {
   data() {
     return {
@@ -68,26 +66,16 @@ export default {
   },
   async created() {
     try {
-      const db = getFirestore(this.$firebaseApp);
-      const variationsRef = collection(db, "variations");
-      const sortQuery = query(variationsRef, orderBy("title"));
-
-      const querySnapshot = await getDocs(sortQuery);
-      querySnapshot.forEach((doc) => {
-        this.variations.push(doc.data());
-      });
+      const response = await this.$axios.$get('api/variations', { withCredentials: true })
+      console.log('variations呼ばれた')
+      this.variations = response
     } catch (e) {
       console.error("Error:", e);
     }
     try {
-      const db = getFirestore(this.$firebaseApp);
-      const variationProgramsRef = collection(db, "variation_programs");
-      const sortQuery = query(variationProgramsRef, orderBy("id"));
-
-      const querySnapshot = await getDocs(sortQuery);
-      querySnapshot.forEach((doc) => {
-        this.variation_programs.push(doc.data());
-      });
+      const response = await this.$axios.$get('api/variation_programs', { withCredentials: true })
+      console.log('variation_programs呼ばれた')
+      this.variation_programs = response
     } catch (e) {
       console.error("Error:", e);
     }

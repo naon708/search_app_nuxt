@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs, orderBy, query } from "firebase/firestore";
 import FloatingActionButton from '../components/FloatingActionButton.vue';
 
 export default {
@@ -77,17 +76,11 @@ export default {
       this.resetDialog();
     }
   },
-  // Firestoreからデータ取得
   async created() {
     try {
-      const db = getFirestore(this.$firebaseApp);
-      const programsRef = collection(db, "programs");
-      const sortQuery = query(programsRef, orderBy("furigana"));
-
-      const querySnapshot = await getDocs(sortQuery);
-      querySnapshot.forEach((doc) => {
-        this.programs.push(doc.data());
-      });
+      const response = await this.$axios.$get('api/programs', { withCredentials: true })
+      console.log('programs呼ばれた')
+      this.programs = response
     } catch (e) {
       console.error("Error:", e);
     }

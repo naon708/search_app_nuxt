@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
-
 export default {
   data() {
     return {
@@ -56,14 +54,9 @@ export default {
   },
   async created() {
     try {
-      const db = getFirestore(this.$firebaseApp);
-      const stepsRef = collection(db, "steps");
-      const sortQuery = query(stepsRef, orderBy("japanese_notation"));
-
-      const querySnapshot = await getDocs(sortQuery);
-      querySnapshot.forEach((doc) => {
-        this.steps.push(doc.data());
-      });
+      const response = await this.$axios.$get('api/steps', { withCredentials: true })
+      console.log('steps呼ばれた')
+      this.steps = response
     } catch (e) {
       console.error("Error:", e);
     }
