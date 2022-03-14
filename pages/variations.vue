@@ -64,6 +64,11 @@ export default {
       translateUrl: ''
     }
   },
+  head() {
+    return {
+      title: 'ヴァリエーション'
+    }
+  },
   async created() {
     try {
       const response = await this.$axios.$get('api/variations', { withCredentials: true })

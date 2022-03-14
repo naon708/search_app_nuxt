@@ -71,6 +71,11 @@ export default {
       wikipediaUrl: ''
     }
   },
+  head() {
+    return {
+      title: '演目'
+    }
+  },
   watch: {
     dialog() {
       this.resetDialog();

@@ -52,6 +52,11 @@ export default {
       translateUrl: ''
     }
   },
+  head() {
+    return {
+      title: 'ダンサー'
+    }
+  },
   async created() {
     try {
       const response = await this.$axios.$get('api/dancers', { withCredentials: true })

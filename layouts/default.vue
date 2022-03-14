@@ -32,7 +32,15 @@
     </v-navigation-drawer>
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
-      <v-icon color="brown darken-2">{{ title }}</v-icon>
+      <nuxt-link to="/" style="text-decoration: none;">
+        <v-icon color="brown darken-2">
+          {{ title }}
+        </v-icon>
+      </nuxt-link>
+      <v-spacer />
+      <div class="mx-auto ml-n6 mt-1 text-h6 text--secondary">
+        <span style="color: #5D4037;">{{ pageTitle }}</span>
+      </div>
       <v-spacer />
       <v-btn color="brown darken-2" icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -91,5 +99,12 @@ export default {
       title: 'Pinap',
     }
   },
+  computed: {
+    pageTitle() {
+      const matchedRoute = this.$route.matched[0]
+      const headInfo = matchedRoute.components.default.options
+      return headInfo.head ? headInfo.head().title : ''
+    }
+  }
 }
 </script>

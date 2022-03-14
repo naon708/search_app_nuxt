@@ -52,6 +52,11 @@ export default {
       translateUrl: ''
     }
   },
+  head() {
+    return {
+      title: 'パ / ステップ'
+    }
+  },
   async created() {
     try {
       const response = await this.$axios.$get('api/steps', { withCredentials: true })
