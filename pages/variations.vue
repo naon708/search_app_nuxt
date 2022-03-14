@@ -66,6 +66,11 @@ export default {
       translateUrl: ''
     }
   },
+  head() {
+    return {
+      title: 'ヴァリエーション'
+    }
+  },
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);

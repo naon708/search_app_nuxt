@@ -54,6 +54,11 @@ export default {
       translateUrl: ''
     }
   },
+  head() {
+    return {
+      title: 'パ / ステップ'
+    }
+  },
   async created() {
     try {
       const db = getFirestore(this.$firebaseApp);

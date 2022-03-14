@@ -9,7 +9,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    // titleTemplate: '%s - Pinap',
+    titleTemplate: '%s - Pinap',
     title: 'Pinap',
     meta: [
       { charset: 'utf-8' },
