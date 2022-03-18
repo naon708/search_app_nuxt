@@ -47,7 +47,7 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container >
+      <v-container :style="inSearchResults">
         <Nuxt />
       </v-container>
     </v-main>
@@ -93,10 +93,15 @@ export default {
           title: 'ダンサー',
           to: '/dancers',
         },
+        {
+          icon: 'mdi-account-star-outline',
+          title: '検索結果',
+          to: '/searchResults',
+        },
       ],
       right: true,
       rightDrawer: false,
-      title: 'Pinap',
+      title: 'Pinap'
     }
   },
   computed: {
@@ -104,6 +109,9 @@ export default {
       const matchedRoute = this.$route.matched[0]
       const headInfo = matchedRoute.components.default.options
       return headInfo.head ? headInfo.head().title : ''
+    },
+    inSearchResults() {
+      return this.$route.path === '/searchResults' ? 'padding: 0;' : ''
     }
   }
 }
