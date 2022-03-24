@@ -124,6 +124,7 @@ export default {
     searchBy(word) {
       this.dialog = false
       this.$store.dispatch('searchBy', word)
+      this.$store.commit('resetState')
       this.$router.push('/searchResults')
     }
   }

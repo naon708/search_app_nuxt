@@ -1,18 +1,31 @@
 <template>
   <div>
+    <!-- ステップリスト -->
+    <div v-for="step of steps" :key="step.japanese_notation">
+      <v-card
+        class="mb-2 d-flex align-center justify-center text--secondary"
+        height="10vh"
+        :elevation="1"
+        @click="openDialog(); insertInDialog(step)"
+      >
+        {{ step.japanese_notation }}
+      </v-card>
+    </div>
+
+    <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title class="justify-center text-h6 text--secondary">
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
@@ -27,16 +40,6 @@
       </v-card>
     </v-dialog>
 
-    <div v-for="step of steps" :key="step.japanese_notation">
-      <v-card
-        class="mb-2 d-flex align-center justify-center text--secondary"
-        height="10vh"
-        :elevation="1"
-        @click="openDialog(); insertInDialog(step)"
-      >
-        {{ step.japanese_notation }}
-      </v-card>
-    </div>
     <FloatingActionButton />
   </div>
 </template>
@@ -76,10 +79,18 @@ export default {
       this.translateUrl = this.translateSearch(detail.universal_notation);
     },
     japaneseSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+バレエ`
+      // return `https://www.youtube.com/results?search_query=${word}+バレエ`
+      return `${word}+バレエ`
     },
     translateSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+ballet`
+      // return `https://www.youtube.com/results?search_query=${word}+ballet`
+      return `${word}+ballet`
+    },
+    searchBy(word) {
+      this.dialog = false
+      this.$store.dispatch('searchBy', word)
+      this.$store.commit('resetState')
+      this.$router.push('/searchResults')
     }
   }
 }
