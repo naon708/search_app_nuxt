@@ -34,7 +34,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/firebase',
-    '~/plugins/vue-scrollto'
+    '~/plugins/vue-scrollto',
+    '~/plugins/filter',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
