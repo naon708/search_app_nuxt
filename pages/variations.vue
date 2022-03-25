@@ -3,7 +3,7 @@
     <!-- ヴァリエーションリスト -->
     <div v-for="program of variation_programs" :key="program.id">
       <!-- 演目名 -->
-      <p class="mt-5 text-center text-h5 text--secondary">
+      <p class="mt-5 text-center text-h5 secondary--text">
         <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
           {{ program.name }}
         </span>
@@ -12,7 +12,7 @@
         <!-- ヴァリエーションタイトル -->
         <v-card
           v-if="variation.variation_program_id === program.id"
-          class="mb-2 d-flex align-center justify-center text--secondary"
+          class="mb-2 d-flex align-center justify-center secondary--text"
           height="10vh"
           :elevation="1"
           @click="openDialog(); insertInDialog(variation)"
@@ -26,7 +26,7 @@
     <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
       <v-card>
-        <v-card-title class="justify-center text-subtitle-1 text--secondary">
+        <v-card-title class="justify-center text-subtitle-1 secondary--text">
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">

@@ -38,10 +38,11 @@
         </v-icon>
       </nuxt-link>
       <v-spacer />
-      <div class="mx-auto ml-n6 mt-1 text-h6 text--secondary">
-        <span style="color: #5D4037;">{{ pageTitle }}</span>
+      <div class="mx-auto ml-4 mt-1 text-subtitle-1 secondary--text">
+        <span>{{ pageTitle }}</span>
       </div>
       <v-spacer />
+      <GridMenu />
       <v-btn color="brown darken-2" icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>

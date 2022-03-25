@@ -3,7 +3,7 @@
     <!-- ダンサーリスト -->
     <div v-for="dancer of dancers" :key="dancer.japanese_notation">
       <v-card
-        class="mb-2 d-flex align-center justify-center text--secondary"
+        class="mb-2 d-flex align-center justify-center secondary--text"
         height="10vh"
         :elevation="1"
         @click="openDialog(); insertInDialog(dancer)"
@@ -15,7 +15,7 @@
     <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
       <v-card>
-        <v-card-title class="justify-center text-h6 text--secondary">
+        <v-card-title class="justify-center text-h6 secondary--text">
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
