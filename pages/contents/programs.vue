@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import FloatingActionButton from '../components/FloatingActionButton.vue';
+import FloatingActionButton from '../../components/FloatingActionButton.vue';
 
 export default {
   components: { FloatingActionButton },

@@ -53,7 +53,7 @@
       </v-container>
     </v-main>
     <v-footer :absolute="!fixed" app class="justify-center">
-      <span style="color: #757575;">&copy; {{ new Date().getFullYear() }}</span>
+      <span class="secondary--text text-caption">&copy; 2022 Pinap</span>
     </v-footer>
   </v-app>
 </template>
@@ -77,22 +77,22 @@ export default {
         {
           icon: 'mdi-subtitles-outline',
           title: '演目',
-          to: '/programs',
+          to: '/contents/programs',
         },
         {
           icon: 'mdi-shoe-ballet',
           title: 'ヴァリエーション',
-          to: '/variations',
+          to: '/contents/variations',
         },
         {
           icon: 'mdi-human-female-dance',
           title: 'パ / ステップ',
-          to: '/steps',
+          to: '/contents/steps',
         },
         {
           icon: 'mdi-account-star-outline',
           title: 'ダンサー',
-          to: '/dancers',
+          to: '/contents/dancers',
         },
         {
           icon: 'mdi-account-star-outline',
