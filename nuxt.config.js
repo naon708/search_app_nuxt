@@ -36,6 +36,7 @@ export default {
     '~/plugins/firebase',
     '~/plugins/vue-scrollto',
     '~/plugins/filter',
+    '~/plugins/persistedState.client',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
