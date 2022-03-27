@@ -28,6 +28,7 @@ export const actions = {
 
 export const getters = {
   searchResults(state) {
+    console.log('gettersよばれた')
     return state.searchResults;
   }
 }

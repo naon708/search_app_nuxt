@@ -89,15 +89,18 @@ export default {
   },
   computed: {
     searchResults() {
-      return this.$store.getters.searchResults
-    }
+      if (this.$store.getters.searchResults.length) {
+        return this.$store.getters.searchResults
+      }
+      return this.redirectToRoot()
+    },
   },
   watch: {
     dialog() {
       if (!this.dialog) {
-        this.resetDialog();
+        this.resetDialog()
       }
-    },
+    }
   },
   methods: {
     openDialog() {
@@ -117,6 +120,9 @@ export default {
       this.description = ''
       this.view_count = ''
       this.urlForEmbedVideo = ''
+    },
+    redirectToRoot() {
+      this.$router.push('/')
     }
   }
 }
