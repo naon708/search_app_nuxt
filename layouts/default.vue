@@ -38,21 +38,22 @@
         </v-icon>
       </nuxt-link>
       <v-spacer />
-      <div class="mx-auto ml-n6 mt-1 text-h6 text--secondary">
-        <span style="color: #5D4037;">{{ pageTitle }}</span>
+      <div class="mx-auto ml-4 mt-1 text-subtitle-1 secondary--text">
+        <span>{{ pageTitle }}</span>
       </div>
       <v-spacer />
+      <GridMenu />
       <v-btn color="brown darken-2" icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container >
+      <v-container :style="inSearchResults">
         <Nuxt />
       </v-container>
     </v-main>
     <v-footer :absolute="!fixed" app class="justify-center">
-      <span style="color: #757575;">&copy; {{ new Date().getFullYear() }}</span>
+      <span class="secondary--text text-caption">&copy; 2022 Pinap</span>
     </v-footer>
   </v-app>
 </template>
@@ -76,27 +77,32 @@ export default {
         {
           icon: 'mdi-subtitles-outline',
           title: '演目',
-          to: '/programs',
+          to: '/contents/programs',
         },
         {
           icon: 'mdi-shoe-ballet',
           title: 'ヴァリエーション',
-          to: '/variations',
+          to: '/contents/variations',
         },
         {
           icon: 'mdi-human-female-dance',
           title: 'パ / ステップ',
-          to: '/steps',
+          to: '/contents/steps',
         },
         {
           icon: 'mdi-account-star-outline',
           title: 'ダンサー',
-          to: '/dancers',
+          to: '/contents/dancers',
+        },
+        {
+          icon: 'mdi-account-star-outline',
+          title: '検索結果',
+          to: '/searchResults',
         },
       ],
       right: true,
       rightDrawer: false,
-      title: 'Pinap',
+      title: 'Pinap'
     }
   },
   computed: {
@@ -104,6 +110,9 @@ export default {
       const matchedRoute = this.$route.matched[0]
       const headInfo = matchedRoute.components.default.options
       return headInfo.head ? headInfo.head().title : ''
+    },
+    inSearchResults() {
+      return this.$route.path === '/searchResults' ? 'padding: 0;' : ''
     }
   }
 }

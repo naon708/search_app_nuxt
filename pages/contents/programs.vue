@@ -7,20 +7,32 @@
       <v-tab>すべて</v-tab>
     </v-tabs> -->
 
+    <!-- 演目リスト -->
+    <div v-for="program of programs" :key="program.furigana">
+      <v-card
+        class="mb-2 d-flex align-center justify-center secondary--text"
+        height="10vh"
+        :elevation="1"
+        @click="openDialog(); insertInDialog(program)"
+      >
+        {{ program.japanese_notation }}
+      </v-card>
+    </div>
+
     <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
       <v-card>
-        <v-card-title class="justify-center text-h6 text--secondary">
+        <v-card-title class="justify-center text-h6 secondary--text">
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
@@ -41,23 +53,12 @@
       </v-card>
     </v-dialog>
 
-    <!-- 演目リスト -->
-    <div v-for="program of programs" :key="program.furigana">
-      <v-card
-        class="mb-2 d-flex align-center justify-center text--secondary"
-        height="10vh"
-        :elevation="1"
-        @click="openDialog(); insertInDialog(program)"
-      >
-        {{ program.japanese_notation }}
-      </v-card>
-    </div>
     <FloatingActionButton />
   </div>
 </template>
 
 <script>
-import FloatingActionButton from '../components/FloatingActionButton.vue';
+import FloatingActionButton from '../../components/FloatingActionButton.vue';
 
 export default {
   components: { FloatingActionButton },
@@ -84,7 +85,7 @@ export default {
   async created() {
     try {
       const response = await this.$axios.$get('api/programs', { withCredentials: true })
-      console.log('programs呼ばれた')
+      console.log('programsコンポーネントだよ')
       this.programs = response
     } catch (e) {
       console.error("Error:", e);
@@ -111,13 +112,20 @@ export default {
       };
     },
     japaneseSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+バレエ`
+      // https://www.youtube.com/results?search_query=${word}+バレエ
+      return `${word}+バレエ`
     },
     translateSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+ballet`
+      return `${word}+ballet`
     },
     wikipediaSearch(word) {
       return `https://ja.wikipedia.org/wiki/${word}`
+    },
+    searchBy(word) {
+      this.dialog = false
+      this.$store.dispatch('searchBy', word).then(() => {
+        this.$router.push('/searchResults')
+      })
     }
   }
 }

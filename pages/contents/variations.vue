@@ -1,18 +1,42 @@
 <template>
   <div>
+    <!-- ヴァリエーションリスト -->
+    <div v-for="program of variation_programs" :key="program.id">
+      <!-- 演目名 -->
+      <p class="mt-5 text-center text-h5 secondary--text">
+        <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
+          {{ program.name }}
+        </span>
+      </p>
+      <div v-for="variation of variations" :key="variation.id">
+        <!-- ヴァリエーションタイトル -->
+        <v-card
+          v-if="variation.variation_program_id === program.id"
+          class="mb-2 d-flex align-center justify-center secondary--text"
+          height="10vh"
+          :elevation="1"
+          @click="openDialog(); insertInDialog(variation)"
+        >
+            {{ variation.title }}
+        </v-card>
+      </div>
+      <br>
+    </div>
+
+    <!-- ダイアログ -->
     <v-dialog v-model="dialog" width="500">
       <v-card>
-        <v-card-title class="justify-center text-subtitle-1 text--secondary">
+        <v-card-title class="justify-center text-subtitle-1 secondary--text">
           {{ title }}
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">日本語で検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large>
+          <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
@@ -27,27 +51,6 @@
       </v-card>
     </v-dialog>
 
-    <div v-for="program of variation_programs" :key="program.id">
-      <!-- 演目名 -->
-      <p class="mt-5 text-center text-h5 text--secondary">
-        <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
-          {{ program.name }}
-        </span>
-      </p>
-      <div v-for="variation of variations" :key="variation.id">
-        <!-- ヴァリエーションタイトル -->
-        <v-card
-          v-if="variation.variation_program_id === program.id"
-          class="mb-2 d-flex align-center justify-center text--secondary"
-          height="10vh"
-          :elevation="1"
-          @click="openDialog(); insertInDialog(variation)"
-        >
-            {{ variation.title }}
-        </v-card>
-      </div>
-      <br>
-    </div>
     <FloatingActionButton />
   </div>
 </template>
@@ -95,10 +98,16 @@ export default {
       this.translateUrl = this.translateSearch(detail.universal_notation);
     },
     japaneseSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+ヴァリエーション`
+      return `${word}+ヴァリエーション`
     },
     translateSearch(word) {
-      return `https://www.youtube.com/results?search_query=${word}+variation`
+      return `${word}+variation`
+    },
+    searchBy(word) {
+      this.dialog = false
+      this.$store.dispatch('searchBy', word).then(() => {
+        this.$router.push('/searchResults')
+      })
     }
   }
 }
