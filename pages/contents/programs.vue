@@ -112,7 +112,7 @@ export default {
       };
     },
     japaneseSearch(word) {
-      // return `https://www.youtube.com/results?search_query=${word}+バレエ`
+      // https://www.youtube.com/results?search_query=${word}+バレエ
       return `${word}+バレエ`
     },
     translateSearch(word) {
@@ -123,9 +123,9 @@ export default {
     },
     searchBy(word) {
       this.dialog = false
-      this.$store.dispatch('searchBy', word)
-      this.$store.commit('resetState')
-      this.$router.push('/searchResults')
+      this.$store.dispatch('searchBy', word).then(() => {
+        this.$router.push('/searchResults')
+      })
     }
   }
 }

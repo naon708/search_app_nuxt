@@ -3,9 +3,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  resetState (state) {
-    state.searchResults = []
-  },
   searchBy (state, payload) {
     state.searchResults = payload
     console.log('mutationだよ')

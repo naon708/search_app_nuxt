@@ -79,18 +79,16 @@ export default {
       this.translateUrl = this.translateSearch(detail.universal_notation);
     },
     japaneseSearch(word) {
-      // return `https://www.youtube.com/results?search_query=${word}+バレエ`
       return `${word}+バレエ`
     },
     translateSearch(word) {
-      // return `https://www.youtube.com/results?search_query=${word}+ballet`
       return `${word}+ballet`
     },
     searchBy(word) {
       this.dialog = false
-      this.$store.dispatch('searchBy', word)
-      this.$store.commit('resetState')
-      this.$router.push('/searchResults')
+      this.$store.dispatch('searchBy', word).then(() => {
+        this.$router.push('/searchResults')
+      })
     }
   }
 }
