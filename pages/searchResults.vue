@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 検索結果 -->
-    <div v-for="result of searchResults" :key="result.title">
+    <div v-for="result of searchResults" :key="result.id">
       <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img>
       <v-card class="elevation-1">
         <!-- three-line かつ subtitle で改行される -->
@@ -89,10 +89,7 @@ export default {
   },
   computed: {
     searchResults() {
-      if (this.$store.getters.searchResults.length) {
-        return this.$store.getters.searchResults
-      }
-      return this.redirectToRoot()
+      return this.$store.getters.searchResults.length ? this.$store.getters.searchResults : this.redirectToRoot()
     },
   },
   watch: {
