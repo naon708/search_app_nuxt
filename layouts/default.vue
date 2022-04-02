@@ -18,18 +18,17 @@
             <v-icon color="brown lighten-1">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="secondary--text" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
-      </v-list>
-
-      <template #append>
-        <v-list class="mb-8">
+        <v-divider></v-divider>
+        <div>
           <Terms />
           <PrivacyPolicy />
-        </v-list>
-      </template>
+        </div>
+      </v-list>
     </v-navigation-drawer>
+
     <!-- Header Bar -->
     <v-app-bar :clipped-left="clipped" app color="#fff" class="elevation-0" style="border-bottom: 3px solid #FFD600;">
       <nuxt-link to="/" style="text-decoration: none;">
@@ -93,11 +92,6 @@ export default {
           icon: 'mdi-account-star-outline',
           title: 'ダンサー',
           to: '/contents/dancers',
-        },
-        {
-          icon: 'mdi-account-star-outline',
-          title: '検索結果',
-          to: '/searchResults',
         },
       ],
       right: true,

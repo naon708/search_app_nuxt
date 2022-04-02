@@ -1,26 +1,22 @@
 <template>
-  <div class="text-center">
+  <div>
     <v-dialog
       v-model="dialog"
       width="90%"
       scrollable
     >
       <template #activator="{ on, attrs }">
-        <v-btn
-          color="grey darken-1"
-          dark
-          text
-          plain
-          width="50"
+        <v-card-subtitle
+          class="pb-0 secondary--text"
           v-bind="attrs"
           v-on="on"
         >
           利用規約
-        </v-btn>
+        </v-card-subtitle>
       </template>
 
       <v-card>
-        <v-card-title class="secondary--text text-h6 grey lighten-3">
+        <v-card-title class="grey--text text--darken-2 text-h6 grey lighten-3">
           利用規約
         </v-card-title>
 

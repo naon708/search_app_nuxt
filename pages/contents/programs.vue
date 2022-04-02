@@ -8,7 +8,7 @@
     </v-tabs> -->
 
     <!-- 演目リスト -->
-    <div v-for="program of programs" :key="program.furigana">
+    <div v-for="program of programs" :key="program.name_order">
       <v-card
         class="mb-2 d-flex align-center justify-center secondary--text"
         height="10vh"
@@ -23,17 +23,19 @@
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title class="justify-center text-h6 secondary--text">
-          {{ title }}
+          <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
+            {{ title }}
+          </span>
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
-            <v-icon left>mdi-youtube</v-icon>
+            <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
-            <v-icon left>mdi-youtube</v-icon>
+            <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
         </v-card-actions>
