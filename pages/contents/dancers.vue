@@ -16,19 +16,21 @@
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title class="justify-center text-h6 secondary--text">
-          {{ title }}
+          <span style="background: linear-gradient(#ffffff 20%, #FFFDE7);">
+            {{ title }}
+          </span>
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
           <!-- <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large> -->
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
-            <v-icon left>mdi-youtube</v-icon>
+            <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
           <!-- <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large> -->
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
-            <v-icon left>mdi-youtube</v-icon>
+            <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
           </v-btn>
         </v-card-actions>
