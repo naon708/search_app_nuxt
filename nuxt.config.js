@@ -56,10 +56,10 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-
     '@nuxtjs/dotenv',
     // https://google-analytics.nuxtjs.org/setup
     '@nuxtjs/google-analytics',
+    '@nuxtjs/auth-next',
   ],
 
   googleAnalytics: {
@@ -79,6 +79,27 @@ export default {
       target: 'http://localhost:3000/api/v1',
       pathRewrite: {'^/api/': ''}
     }
+  },
+
+  auth: {
+    cookie: false,
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+        },
+        endpoints: {
+          login: { url: 'api/login', method: 'post' },
+          user: { url: 'api/user', method: 'get' },
+          logout: false,
+        }
+      }
+    },
+    redirect: {
+      login: '/auth/login',  // 未ログイン時に認証が必要なページにアクセスした際のリダイレクトURL
+      logout: '/',      // ログアウト時のリダイレクトURL
+      home: '/myPage',  // ログイン後のリダイレクトURL
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

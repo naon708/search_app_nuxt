@@ -41,7 +41,7 @@
               <span>Googleフォーム</span>
             </v-btn>
           </v-card-actions>
-          <span>感想やフィードバックも<br>お待ちしております！</span> 
+          <span class="text-body-2">感想お待ちしております！<br>また不具合の報告もいただけると<br>本当に助かります！</span> 
         </v-card-text>
       </v-card>
     </v-col>
