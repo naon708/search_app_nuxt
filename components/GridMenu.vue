@@ -30,7 +30,7 @@
             </v-card>
           </v-col>
           <v-col>
-            <v-card height="80" class="d-flex align-center secondary--text">
+            <v-card to="/information" height="80" class="d-flex align-center secondary--text">
               <div class="ml-2">
                 <v-icon color="#FFD600" class="mb-1">mdi-bulletin-board</v-icon><br>
                 お知らせ
