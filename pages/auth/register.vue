@@ -105,18 +105,26 @@ export default {
   },
 
   methods: {
-    register () {
-      if (this.$refs.form.validate()) {
-        this.loading = true
-        this.errorMessages = []
-        // 登録処理
-        this.$axios.post('api/register', this.user).then((res) => {
+    async register () {
+      if (!this.$refs.form.validate()) {
+        return
+      }
+      this.loading = true
+      this.errorMessages = []
+
+      try {
+        await this.$axios.post('api/register', this.user).then((res) => {
           if (res.data.status === 401) {
             this.errorMessages = res.data.error.name
-            return
+          } else {
+            this.$auth.loginWith('local', { data: this.user }).then(() => {
+              this.$router.push('/myPage')
+              this.$store.dispatch('setSnackbar', { message: '登録が完了しました' })
+            })
           }
-          this.$auth.loginWith('local', { data: this.user })
         })
+      } catch {
+        this.errorMessages.push('不具合のため、時間をおいてお試しください。')
       }
       this.loading = false
     },
