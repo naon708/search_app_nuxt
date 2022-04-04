@@ -1,12 +1,19 @@
 export const state = () => ({
-  searchResults: []
+  searchResults: [],
+  snackbar: {showing: false, message: ''},
 })
 
 export const mutations = {
   searchBy (state, payload) {
     state.searchResults = payload
-    console.log('mutationだよ')
-  }
+  },
+  setSnackbar (state, snackbar) {
+    state.snackbar = snackbar
+  },
+  closeSnackbar (state) {
+    state.message = ""
+    state.snackbar.showing = false
+  },
 }
 
 export const actions = {
@@ -16,16 +23,21 @@ export const actions = {
         'searchBy',
         await this.$axios.$get(`api/search_results?q=${word}`, { withCredentials: true })
       )
-      console.log('actions呼ばれた')
     } catch (e) {
       console.error("Error:", e);
     }
   },
+  setSnackbar(context, snackbar) {
+    snackbar.showing = true
+    context.commit('setSnackbar', snackbar)
+    setTimeout(() => {
+      context.commit('closeSnackbar')
+    }, 4000)
+  }
 }
 
 export const getters = {
   searchResults(state) {
-    console.log('gettersよばれた')
     return state.searchResults;
   }
 }

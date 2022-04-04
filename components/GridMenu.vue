@@ -6,8 +6,7 @@
       offset-y
     >
       <template #activator="{ on, attrs }">
-        <!-- mt-2で無理やり調整した -->
-        <v-btn color="brown darken-2" class="mt-2" icon v-bind="attrs" v-on="on">
+        <v-btn color="brown darken-2" icon v-bind="attrs" v-on="on">
           <v-icon>mdi-dots-grid</v-icon>
         </v-btn>
       </template>
@@ -111,18 +110,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <!-- スナックバー -->
-    <div class="text-center ma-2">
-      <v-snackbar v-model="snackbar" color="light-blue accent-3" top>
-        {{ text }}
-        <template #action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="snackbar = false">
-            閉じる
-          </v-btn>
-        </template>
-      </v-snackbar>
-    </div>
   </div>
 </template>
 
@@ -132,15 +119,13 @@ export default {
     return {
       dialog: false,
       menu: false,
-      snackbar: false,
-      text: `ログアウトしました`,
     }
   },
   methods: {
     logout () {
       this.dialog = false
       this.$auth.logout()
-      this.snackbar = true
+      this.$store.dispatch('setSnackbar', { message: 'ログアウトしました' })
     }
   }
 }
