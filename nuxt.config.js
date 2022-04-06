@@ -16,7 +16,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'keywords', content: 'バレエ, 動画, 演目, パ, ダンサー, ヴァリエーション' },
-      { hid: 'description', name: 'description', content: 'バレエ動画が検索しやすくなるサイトです' },
+      { hid: 'description', name: 'description', content: '忘れがちなバレエ用語を、一覧から検索できるサービスです' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Pinap' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'https://pinap.jp' },
