@@ -57,10 +57,10 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-card height="80" class="d-flex align-center secondary--text">
+            <v-card to="/shareSns" height="80" class="d-flex align-center secondary--text">
               <div class="ml-2">
-                Coming...
-                <v-icon color="brown lighten-2" class="mb-1">mdi-cogs</v-icon>
+                <v-icon color="#FFD600" class="mb-1">mdi-share-variant</v-icon><br>
+                シェア
               </div>
             </v-card>
           </v-col>
