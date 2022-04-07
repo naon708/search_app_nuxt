@@ -1,21 +1,24 @@
 <template>
   <div>
     <!-- 検索結果 -->
-    <div v-for="result of searchResults" :key="result.id">
-      <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img>
-      <v-card class="elevation-1">
-        <!-- three-line かつ subtitle で改行される -->
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="pinap_icon_v2.png" alt="Pinap"></v-img>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="grey--text text--darken-4">{{ result.title }}</v-list-item-title>
-            <v-list-item-subtitle class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card>
-    </div>
+    <v-row>
+      <v-col cols="12" sm="6" md="6" lg="4" v-for="result of searchResults" :key="result.id" class="py-0">
+        <div style="height: 210px;">
+          <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img> 
+        </div>
+        <v-card>
+          <v-list-item>
+            <v-list-item-avatar>
+              <v-img src="pinap_icon_v2.png" alt="Pinap"></v-img>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="grey--text text--darken-4">{{ result.title }}</v-list-item-title>
+              <v-list-item-subtitle class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <!-- ダイアログ -->
     <v-dialog v-model="dialog">
@@ -69,8 +72,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
-
 export default {
   data() {
     return {
