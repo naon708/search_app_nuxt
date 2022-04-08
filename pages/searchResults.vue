@@ -21,7 +21,7 @@
     </v-row>
 
     <!-- ダイアログ -->
-    <v-dialog v-model="dialog" scrollable>
+    <v-dialog v-model="dialog">
       <v-card>
         <!-- 埋め込み動画 -->
         <v-col>
