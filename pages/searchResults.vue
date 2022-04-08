@@ -2,7 +2,7 @@
   <div>
     <!-- 検索結果 -->
     <v-row>
-      <v-col cols="12" sm="6" md="6" lg="4" v-for="result of searchResults" :key="result.id" class="py-0">
+      <v-col v-for="result of searchResults" :key="result.id" cols="12" sm="6" md="6" lg="4" class="py-0">
         <div style="height: 210px;">
           <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img> 
         </div>
@@ -21,7 +21,7 @@
     </v-row>
 
     <!-- ダイアログ -->
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" scrollable>
       <v-card>
         <!-- 埋め込み動画 -->
         <v-col>
@@ -34,6 +34,7 @@
               autoplay
               allowfullscreen
               modestbranding="1"
+              :style="iframeStyle"
             ></iframe>
           </v-responsive>
         </v-col>
@@ -55,13 +56,16 @@
             width="260"
             outlined
             rounded
-            style="text-transform: none">
+            style="text-transform: none"
+          >
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">YouTubeアプリで見る</span>
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
         <v-card-actions class="pt-1">
+          <v-switch v-model="flipSwitch" color="yellow darken-1" class="mt-1 fix-switch"></v-switch>
+          <v-icon color="secondary">mdi-swap-horizontal</v-icon>
           <v-spacer></v-spacer>
           <v-btn color="secondary" text @click="dialog = false">閉じる</v-btn>
         </v-card-actions>
@@ -81,7 +85,9 @@ export default {
       description: '',
       view_count: '',
       urlForEmbedVideo: '',
-      urlForPlayYoutubeApp: ''
+      urlForPlayYoutubeApp: '',
+      iframeStyle: '',
+      flipSwitch: false,
     }
   },
   head() {
@@ -99,6 +105,9 @@ export default {
       if (!this.dialog) {
         this.resetDialog()
       }
+    },
+    flipSwitch() {
+      this.flipSwitch ? this.flipHorizontalOn() : this.flipHorizontalOff()
     }
   },
   methods: {
@@ -119,14 +128,25 @@ export default {
       this.description = ''
       this.view_count = ''
       this.urlForEmbedVideo = ''
+      this.flipSwitch = false
     },
     redirectToRoot() {
       this.$router.push('/')
-    }
+    },
+    flipHorizontalOn() {
+      this.iframeStyle = 'transform: scale(-1, 1);'
+    },
+    flipHorizontalOff() {
+      this.iframeStyle = ''
+    },
   }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.fix-switch {
+  .v-messages {
+    display: none;
+  }
+}
 </style>
