@@ -1,21 +1,24 @@
 <template>
   <div>
     <!-- 検索結果 -->
-    <div v-for="result of searchResults" :key="result.id">
-      <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img>
-      <v-card class="elevation-1">
-        <!-- three-line かつ subtitle で改行される -->
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="pinap_icon_v2.png" alt="Pinap"></v-img>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="grey--text text--darken-4">{{ result.title }}</v-list-item-title>
-            <v-list-item-subtitle class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card>
-    </div>
+    <v-row>
+      <v-col v-for="result of searchResults" :key="result.id" cols="12" sm="6" md="6" lg="4" class="py-0">
+        <div style="height: 210px;">
+          <v-img :src="result.thumbnail" alt="サムネイル" @click="openDialog(); insertInDialog(result)"></v-img> 
+        </div>
+        <v-card>
+          <v-list-item>
+            <v-list-item-avatar>
+              <v-img src="pinap_icon_v2.png" alt="Pinap"></v-img>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="grey--text text--darken-4">{{ result.title }}</v-list-item-title>
+              <v-list-item-subtitle class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <!-- ダイアログ -->
     <v-dialog v-model="dialog">
@@ -31,6 +34,7 @@
               autoplay
               allowfullscreen
               modestbranding="1"
+              :style="iframeStyle"
             ></iframe>
           </v-responsive>
         </v-col>
@@ -52,13 +56,16 @@
             width="260"
             outlined
             rounded
-            style="text-transform: none">
+            style="text-transform: none"
+          >
             <v-icon left>mdi-youtube</v-icon>
             <span class="text-body-1">YouTubeアプリで見る</span>
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
         <v-card-actions class="pt-1">
+          <v-switch v-model="flipSwitch" color="yellow darken-1" class="mt-1 fix-switch"></v-switch>
+          <v-icon color="secondary">mdi-swap-horizontal</v-icon>
           <v-spacer></v-spacer>
           <v-btn color="secondary" text @click="dialog = false">閉じる</v-btn>
         </v-card-actions>
@@ -69,8 +76,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
-
 export default {
   data() {
     return {
@@ -80,7 +85,9 @@ export default {
       description: '',
       view_count: '',
       urlForEmbedVideo: '',
-      urlForPlayYoutubeApp: ''
+      urlForPlayYoutubeApp: '',
+      iframeStyle: '',
+      flipSwitch: false,
     }
   },
   head() {
@@ -98,6 +105,9 @@ export default {
       if (!this.dialog) {
         this.resetDialog()
       }
+    },
+    flipSwitch() {
+      this.flipSwitch ? this.flipHorizontalOn() : this.flipHorizontalOff()
     }
   },
   methods: {
@@ -118,14 +128,25 @@ export default {
       this.description = ''
       this.view_count = ''
       this.urlForEmbedVideo = ''
+      this.flipSwitch = false
     },
     redirectToRoot() {
       this.$router.push('/')
-    }
+    },
+    flipHorizontalOn() {
+      this.iframeStyle = 'transform: scale(-1, 1);'
+    },
+    flipHorizontalOff() {
+      this.iframeStyle = ''
+    },
   }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.fix-switch {
+  .v-messages {
+    display: none;
+  }
+}
 </style>

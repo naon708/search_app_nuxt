@@ -48,6 +48,17 @@
     </v-app-bar>
     <v-main>
       <v-container :style="inSearchResults">
+        <!-- Snackbar -->
+        <div class="text-center ma-2">
+          <v-snackbar v-model="snackbar.showing" color="light-blue accent-3" top>
+            {{ snackbar.message }}
+            <template #action="{ attrs }">
+              <v-btn text v-bind="attrs" @click="$store.commit('closeSnackbar')">
+                閉じる
+              </v-btn>
+            </template>
+          </v-snackbar>
+        </div>
         <Nuxt />
       </v-container>
     </v-main>
@@ -107,7 +118,10 @@ export default {
     },
     inSearchResults() {
       return this.$route.path === '/searchResults' ? 'padding: 0;' : ''
-    }
+    },
+    snackbar() {
+      return this.$store.state.snackbar
+    },
   }
 }
 </script>
