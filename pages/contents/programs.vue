@@ -13,9 +13,13 @@
         class="mb-2 d-flex align-center justify-center secondary--text"
         height="10vh"
         :elevation="1"
+        style="position: relative;"
         @click="openDialog(); insertInDialog(program)"
       >
         {{ program.japanese_notation }}
+        <v-card-actions class="mr-1" style="position: absolute; right: 0;">
+          <v-icon color="pink lighten-3" size="medium">{{ heartIcon }}</v-icon>
+        </v-card-actions>
       </v-card>
     </div>
 
@@ -46,7 +50,11 @@
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
+
         <v-card-actions class="pt-1">
+          <v-icon class="ml-2" color="pink lighten-3" @click="markAction()">
+            {{ heartIcon }}
+          </v-icon>
           <v-spacer></v-spacer>
           <v-btn color="secondary" text @click="dialog = false">
             閉じる
@@ -71,12 +79,18 @@ export default {
       title: '',
       japaneseUrl: '',
       translateUrl: '',
-      wikipediaUrl: ''
+      wikipediaUrl: '',
+      marked: false,
     }
   },
   head() {
     return {
       title: '演目'
+    }
+  },
+  computed: {
+    heartIcon() {
+      return this.marked ? 'mdi-heart' : 'mdi-heart-outline'
     }
   },
   watch: {
@@ -128,6 +142,18 @@ export default {
       this.$store.dispatch('searchBy', word).then(() => {
         this.$router.push('/searchResults')
       })
+    },
+    markAction() {
+      this.marked ? this.unmarkProgram() : this.markProgram()
+    },
+    markProgram() {
+      // alert('called')
+      console.log('marked')
+      this.marked = true
+    },
+    unmarkProgram() {
+      console.log('unmarked')
+      this.marked = false
     }
   }
 }
