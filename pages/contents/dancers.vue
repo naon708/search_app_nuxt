@@ -6,9 +6,13 @@
         class="mb-2 d-flex align-center justify-center secondary--text"
         height="10vh"
         :elevation="1"
+        style="position: relative;"
         @click="openDialog(); insertInDialog(dancer)"
       >
         {{ dancer.japanese_notation }}
+        <v-card-actions class="mr-1" style="position: absolute; right: 0;">
+          <v-icon color="pink lighten-3" size="medium">{{ heartIconInList(dancer) }}</v-icon>
+        </v-card-actions>
       </v-card>
     </div>
 
@@ -21,14 +25,12 @@
           </span>
         </v-card-title>
         <v-card-actions class="mb-2 justify-center">
-          <!-- <v-btn color="brown darken-2" :href="japaneseUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large> -->
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
             <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">このまま検索する</span>
           </v-btn>
         </v-card-actions>
         <v-card-actions class="mb-2 justify-center">
-          <!-- <v-btn color="brown darken-2" :href="translateUrl" target="_blank" rel="noopener noreferrer" width="260" outlined rounded large> -->
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(translateUrl)">
             <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">翻訳して検索する</span>
@@ -36,6 +38,9 @@
         </v-card-actions>
         <v-divider></v-divider>
         <v-card-actions class="pt-1">
+          <v-icon class="ml-2" color="pink lighten-3" :disabled="disableMark" @click="markAction()">
+            {{ heartIcon }}
+          </v-icon>
           <v-spacer></v-spacer>
           <v-btn color="secondary" text @click="dialog = false">
             閉じる
@@ -56,7 +61,9 @@ export default {
       dialog: false,
       title: '',
       japaneseUrl: '',
-      translateUrl: ''
+      translateUrl: '',
+      dancerId: null,
+      disableMark: false,
     }
   },
   head() {
@@ -64,10 +71,25 @@ export default {
       title: 'ダンサー'
     }
   },
+  computed: {
+    heartIcon() {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.markedDancerIds.includes(this.dancerId) ? 'mdi-heart' : 'mdi-heart-outline'
+      } else {
+        return 'mdi-heart-outline'
+      }
+    },
+  },
+  watch: {
+    disableMark() {
+      this.$store.watch(() => this.$store.state.snackbar.showing, value => {
+        if (!value) { this.disableMark = false }
+      });
+    },
+  },
   async created() {
     try {
       const response = await this.$axios.$get('api/dancers', { withCredentials: true })
-      console.log('dancers呼ばれた')
       this.dancers = response
     } catch (e) {
       console.error("Error:", e);
@@ -81,6 +103,7 @@ export default {
       this.title = detail.japanese_notation;
       this.japaneseUrl = this.japaneseSearch(detail.japanese_notation);
       this.translateUrl = this.translateSearch(detail.universal_notation);
+      this.dancerId = detail.id
     },
     japaneseSearch(word) {
       return `${word}`
@@ -93,7 +116,38 @@ export default {
       this.$store.dispatch('searchBy', word).then(() => {
         this.$router.push('/searchResults')
       })
-    }
+    },
+    heartIconInList(dancer) {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.markedDancerIds.includes(dancer.id) ? 'mdi-heart' : 'mdi-heart-outline'
+      } else {
+        return 'mdi-heart-outline'
+      }
+    },
+    markAction() {
+      this.disableMark = true
+      if (this.$auth.loggedIn) {
+        this.$auth.user.markedDancerIds.includes(this.dancerId) ? this.unmarkDancer() : this.markDancer()
+        this.disableMark = false
+      } else {
+        this.$store.dispatch('setSnackbar', { message: 'ログインしてお気に入り機能を使いましょう！' })
+      }
+    },
+    markDancer() {
+      const params = { dancer_id: this.dancerId }
+      this.$axios.post('api/mark_dancers', params).then(() => {
+        this.$auth.fetchUser()
+      }).catch(e => {
+        this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
+      })
+    },
+    unmarkDancer() {
+      this.$axios.delete('api/mark_dancers/' + this.dancerId).then(() => {
+        this.$auth.fetchUser()
+      }).catch(e => {
+        this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
+      })
+    },
   }
 }
 

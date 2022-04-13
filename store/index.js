@@ -1,6 +1,6 @@
 export const state = () => ({
   searchResults: [],
-  snackbar: {showing: false, message: ''},
+  snackbar: { showing: false, message: '' },
 })
 
 export const mutations = {
@@ -30,9 +30,9 @@ export const actions = {
   setSnackbar(context, snackbar) {
     snackbar.showing = true
     context.commit('setSnackbar', snackbar)
-    setTimeout(() => {
-      context.commit('closeSnackbar')
-    }, 4000)
+  },
+  closeSnackbar(context) {
+    context.commit('closeSnackbar')
   }
 }
 

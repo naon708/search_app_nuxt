@@ -13,9 +13,13 @@
         class="mb-2 d-flex align-center justify-center secondary--text"
         height="10vh"
         :elevation="1"
+        style="position: relative;"
         @click="openDialog(); insertInDialog(program)"
       >
         {{ program.japanese_notation }}
+        <v-card-actions class="mr-1" style="position: absolute; right: 0;">
+          <v-icon color="pink lighten-3" size="medium">{{ heartIconInList(program) }}</v-icon>
+        </v-card-actions>
       </v-card>
     </div>
 
@@ -46,7 +50,11 @@
           </v-btn>
         </v-card-actions>
         <v-divider></v-divider>
+
         <v-card-actions class="pt-1">
+          <v-icon class="ml-2" color="pink lighten-3" :disabled="disableMark" @click="markAction()">
+            {{ heartIcon }}
+          </v-icon>
           <v-spacer></v-spacer>
           <v-btn color="secondary" text @click="dialog = false">
             閉じる
@@ -71,7 +79,9 @@ export default {
       title: '',
       japaneseUrl: '',
       translateUrl: '',
-      wikipediaUrl: ''
+      wikipediaUrl: '',
+      programId: null,
+      disableMark: false,
     }
   },
   head() {
@@ -79,15 +89,28 @@ export default {
       title: '演目'
     }
   },
+  computed: {
+    heartIcon() {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.markedProgramIds.includes(this.programId) ? 'mdi-heart' : 'mdi-heart-outline'
+      } else {
+        return 'mdi-heart-outline'
+      }
+    },
+  },
   watch: {
     dialog() {
       this.resetDialog();
-    }
+    },
+    disableMark() {
+      this.$store.watch(() => this.$store.state.snackbar.showing, value => {
+        if (!value) { this.disableMark = false }
+      });
+    },
   },
   async created() {
     try {
       const response = await this.$axios.$get('api/programs', { withCredentials: true })
-      console.log('programsコンポーネントだよ')
       this.programs = response
     } catch (e) {
       console.error("Error:", e);
@@ -104,6 +127,7 @@ export default {
       if (detail.wikipedia_path) {
         this.wikipediaUrl = this.wikipediaSearch(detail.wikipedia_path);
       }
+      this.programId = detail.id
     },
     resetDialog() {
       if (!this.dialog) {
@@ -111,6 +135,7 @@ export default {
         this.japaneseUrl = ''
         this.translateUrl = ''
         this.wikipediaUrl = ''
+        this.programId = null
       };
     },
     japaneseSearch(word) {
@@ -128,7 +153,38 @@ export default {
       this.$store.dispatch('searchBy', word).then(() => {
         this.$router.push('/searchResults')
       })
-    }
+    },
+    heartIconInList(program) {
+      if (this.$auth.loggedIn) {
+        return this.$auth.user.markedProgramIds.includes(program.id) ? 'mdi-heart' : 'mdi-heart-outline'
+      } else {
+        return 'mdi-heart-outline'
+      }
+    },
+    markAction() {
+      this.disableMark = true
+      if (this.$auth.loggedIn) {
+        this.$auth.user.markedProgramIds.includes(this.programId) ? this.unmarkProgram() : this.markProgram()
+        this.disableMark = false
+      } else {
+        this.$store.dispatch('setSnackbar', { message: 'ログインしてお気に入り機能を使いましょう！' })
+      }
+    },
+    markProgram() {
+      const params = { program_id: this.programId }
+      this.$axios.post('api/mark_programs', params).then(() => {
+        this.$auth.fetchUser()
+      }).catch(e => {
+        this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
+      })
+    },
+    unmarkProgram() {
+      this.$axios.delete('api/mark_programs/' + this.programId).then(() => {
+        this.$auth.fetchUser()
+      }).catch(e => {
+        this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
+      })
+    },
   }
 }
 </script>
