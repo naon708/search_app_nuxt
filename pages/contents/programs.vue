@@ -52,7 +52,7 @@
         <v-divider></v-divider>
 
         <v-card-actions class="pt-1">
-          <v-icon class="ml-2" color="pink lighten-3" @click="markAction()">
+          <v-icon class="ml-2" color="pink lighten-3" :disabled="disableMark" @click="markAction()">
             {{ heartIcon }}
           </v-icon>
           <v-spacer></v-spacer>
@@ -81,6 +81,7 @@ export default {
       translateUrl: '',
       wikipediaUrl: '',
       program_id: null,
+      disableMark: false,
     }
   },
   head() {
@@ -100,7 +101,12 @@ export default {
   watch: {
     dialog() {
       this.resetDialog();
-    }
+    },
+    disableMark() {
+      this.$store.watch(() => this.$store.state.snackbar.showing, value => {
+        if (!value) { this.disableMark = false }
+      });
+    },
   },
   async created() {
     try {
@@ -156,8 +162,10 @@ export default {
       }
     },
     markAction() {
+      this.disableMark = true
       if (this.$auth.loggedIn) {
         this.$auth.user.markedProgramIds.includes(this.program_id) ? this.unmarkProgram() : this.markProgram()
+        this.disableMark = false
       } else {
         this.$store.dispatch('setSnackbar', { message: 'ログインしてお気に入り機能を使いましょう！' })
       }
