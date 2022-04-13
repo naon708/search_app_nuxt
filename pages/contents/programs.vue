@@ -80,7 +80,7 @@ export default {
       japaneseUrl: '',
       translateUrl: '',
       wikipediaUrl: '',
-      program_id: null,
+      programId: null,
       disableMark: false,
     }
   },
@@ -92,7 +92,7 @@ export default {
   computed: {
     heartIcon() {
       if (this.$auth.loggedIn) {
-        return this.$auth.user.markedProgramIds.includes(this.program_id) ? 'mdi-heart' : 'mdi-heart-outline'
+        return this.$auth.user.markedProgramIds.includes(this.programId) ? 'mdi-heart' : 'mdi-heart-outline'
       } else {
         return 'mdi-heart-outline'
       }
@@ -127,7 +127,7 @@ export default {
       if (detail.wikipedia_path) {
         this.wikipediaUrl = this.wikipediaSearch(detail.wikipedia_path);
       }
-      this.program_id = detail.id
+      this.programId = detail.id
     },
     resetDialog() {
       if (!this.dialog) {
@@ -135,7 +135,7 @@ export default {
         this.japaneseUrl = ''
         this.translateUrl = ''
         this.wikipediaUrl = ''
-        this.program_id = null
+        this.programId = null
       };
     },
     japaneseSearch(word) {
@@ -164,14 +164,14 @@ export default {
     markAction() {
       this.disableMark = true
       if (this.$auth.loggedIn) {
-        this.$auth.user.markedProgramIds.includes(this.program_id) ? this.unmarkProgram() : this.markProgram()
+        this.$auth.user.markedProgramIds.includes(this.programId) ? this.unmarkProgram() : this.markProgram()
         this.disableMark = false
       } else {
         this.$store.dispatch('setSnackbar', { message: 'ログインしてお気に入り機能を使いましょう！' })
       }
     },
     markProgram() {
-      const params = { program_id: this.program_id }
+      const params = { program_id: this.programId }
       this.$axios.post('api/mark_programs', params).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
@@ -179,7 +179,7 @@ export default {
       })
     },
     unmarkProgram() {
-      this.$axios.delete('api/mark_programs/' + this.program_id).then(() => {
+      this.$axios.delete('api/mark_programs/' + this.programId).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
