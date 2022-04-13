@@ -50,10 +50,10 @@
       <v-container :style="inSearchResults">
         <!-- Snackbar -->
         <div class="text-center ma-2">
-          <v-snackbar v-model="snackbar.showing" color="light-blue accent-3" top>
+          <v-snackbar v-model="snackbar.showing" timeout="-1" content-class="text-subtitle-1" color="brown lighten-2" bottom>
             {{ snackbar.message }}
             <template #action="{ attrs }">
-              <v-btn text v-bind="attrs" @click="$store.commit('closeSnackbar')">
+              <v-btn text v-bind="attrs" @click="$store.dispatch('closeSnackbar')">
                 閉じる
               </v-btn>
             </template>
