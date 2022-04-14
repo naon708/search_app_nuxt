@@ -31,7 +31,7 @@
           <v-card-actions class="my-4 justify-center">
             <v-btn
               :href="shareLine"
-              color="light-green accent-4"
+              color="green"
               class="pe-4 text-body-1"
               width="260"
               large
