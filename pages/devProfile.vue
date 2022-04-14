@@ -15,7 +15,16 @@
           </v-card-title>
         </v-img>
 
-        <v-card-text>
+        <v-card-text class="pt-8 pb-0 secondary--text">
+          <v-card-title>これまで</v-card-title>
+          <v-card-text>4歳でバレエを始め、23年踊り続けました。 その内8年間、憧れのバレエ団にプロとして情熱を注ぎました。</v-card-text>
+          <v-card-title>現在</v-card-title>
+          <v-card-text>新たに夢中になれることを見つけ、Webエンジニアを目指して精進しています。</v-card-text>
+          <v-card-title>これから</v-card-title>
+          <v-card-text>10年、20年後、2つの道が交わって、バレエに恩返しができたら...そんな夢を見ています。</v-card-text>
+        </v-card-text>
+
+        <v-card-text class="pt-2">
           <v-card-actions class="my-4 justify-center">
             <v-btn
               href="https://twitter.com/NishiguchiNaoya"
