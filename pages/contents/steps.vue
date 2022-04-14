@@ -4,7 +4,7 @@
     <div v-for="step of steps" :key="step.japanese_notation">
       <v-card
         class="mb-2 d-flex align-center justify-center secondary--text"
-        height="10vh"
+        height="75"
         :elevation="1"
         style="position: relative;"
         @click="openDialog(); insertInDialog(step)"

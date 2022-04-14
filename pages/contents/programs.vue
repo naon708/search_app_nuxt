@@ -11,7 +11,7 @@
     <div v-for="program of programs" :key="program.name_order">
       <v-card
         class="mb-2 d-flex align-center justify-center secondary--text"
-        height="10vh"
+        height="75"
         :elevation="1"
         style="position: relative;"
         @click="openDialog(); insertInDialog(program)"
