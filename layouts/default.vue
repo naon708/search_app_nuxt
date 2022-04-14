@@ -23,8 +23,15 @@
         </v-list-item>
         <v-divider></v-divider>
         <div>
-          <Terms />
+          <!-- Login or Logout -->
+          <div v-if="$auth.loggedIn" style="cursor: pointer;" @click.stop="logoutDialog = true">
+            <v-card-subtitle class="pb-0 secondary--text" >ログアウト</v-card-subtitle>
+          </div>
+          <nuxt-link v-else to="/auth/login" style="text-decoration: none;">
+            <v-card-subtitle class="pb-0 secondary--text" nuxt to="/auth/login" >ログイン</v-card-subtitle>
+          </nuxt-link>
           <PrivacyPolicy />
+          <Terms />
         </div>
       </v-list>
     </v-navigation-drawer>
@@ -62,6 +69,25 @@
         <Nuxt />
       </v-container>
     </v-main>
+
+    <!-- Logout Dialog -->
+    <v-dialog v-model="logoutDialog" max-width="290">
+      <v-card height="130">
+        <v-card-title class="justify-center text-h6 grey--text text--darken-2">
+          <v-icon>mdi-logout</v-icon>
+          ログアウトします
+        </v-card-title>
+        <v-card-actions class="justify-space-around">
+          <v-btn width="100" color="info" large outlined @click="logout()">
+            ＯＫ
+          </v-btn>
+          <v-btn width="100" color="info" large outlined @click="logoutDialog = false">
+            キャンセル
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-footer :absolute="!fixed" app class="justify-center">
       <span class="secondary--text text-caption">&copy; 2022 Pinap</span>
     </v-footer>
@@ -107,7 +133,8 @@ export default {
       ],
       right: true,
       rightDrawer: false,
-      title: 'Pinap'
+      title: 'Pinap',
+      logoutDialog: false,
     }
   },
   computed: {
@@ -122,6 +149,13 @@ export default {
     snackbar() {
       return this.$store.state.snackbar
     },
-  }
+  },
+  methods: {
+    logout () {
+      this.logoutDialog = false
+      this.$auth.logout()
+      this.$store.dispatch('setSnackbar', { message: 'ログアウトしました' })
+    }
+  },
 }
 </script>
