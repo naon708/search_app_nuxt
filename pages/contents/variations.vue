@@ -131,7 +131,9 @@ export default {
     },
     searchBy(word) {
       this.dialog = false
+      this.$nuxt.$loading.start()
       this.$store.dispatch('searchBy', word).then(() => {
+        this.$nuxt.$loading.finish()
         this.$router.push('/searchResults')
       })
     },
