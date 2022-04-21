@@ -113,7 +113,7 @@ export default {
       this.errorMessages = []
 
       try {
-        await this.$axios.post('api/register', this.user).then((res) => {
+        await this.$axios.post('/api/v1/register', this.user).then((res) => {
           if (res.data.status === 401) {
             this.errorMessages = res.data.error.name
           } else {
