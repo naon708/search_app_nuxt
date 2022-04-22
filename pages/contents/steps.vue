@@ -89,7 +89,7 @@ export default {
   },
   async created() {
     try {
-      const response = await this.$axios.$get('api/steps', { withCredentials: true })
+      const response = await this.$axios.$get('/api/v1/steps')
       this.steps = response
     } catch (e) {
       console.error("Error:", e);
@@ -137,14 +137,14 @@ export default {
     },
     markStep() {
       const params = { step_id: this.stepId }
-      this.$axios.post('api/mark_steps', params).then(() => {
+      this.$axios.post('/api/v1/mark_steps', params).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
       })
     },
     unmarkStep() {
-      this.$axios.delete('api/mark_steps/' + this.stepId).then(() => {
+      this.$axios.delete('/api/v1/mark_steps/' + this.stepId).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })

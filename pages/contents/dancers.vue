@@ -89,7 +89,7 @@ export default {
   },
   async created() {
     try {
-      const response = await this.$axios.$get('api/dancers', { withCredentials: true })
+      const response = await this.$axios.$get('/api/v1/dancers')
       this.dancers = response
     } catch (e) {
       console.error("Error:", e);
@@ -137,14 +137,14 @@ export default {
     },
     markDancer() {
       const params = { dancer_id: this.dancerId }
-      this.$axios.post('api/mark_dancers', params).then(() => {
+      this.$axios.post('/api/v1/mark_dancers', params).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
       })
     },
     unmarkDancer() {
-      this.$axios.delete('api/mark_dancers/' + this.dancerId).then(() => {
+      this.$axios.delete('/api/v1/mark_dancers/' + this.dancerId).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })

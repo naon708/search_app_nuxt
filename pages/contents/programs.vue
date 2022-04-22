@@ -110,7 +110,7 @@ export default {
   },
   async created() {
     try {
-      const response = await this.$axios.$get('api/programs', { withCredentials: true })
+      const response = await this.$axios.$get('/api/v1/programs')
       this.programs = response
     } catch (e) {
       console.error("Error:", e);
@@ -174,14 +174,14 @@ export default {
     },
     markProgram() {
       const params = { program_id: this.programId }
-      this.$axios.post('api/mark_programs', params).then(() => {
+      this.$axios.post('/api/v1/mark_programs', params).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
       })
     },
     unmarkProgram() {
-      this.$axios.delete('api/mark_programs/' + this.programId).then(() => {
+      this.$axios.delete('/api/v1/mark_programs/' + this.programId).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })

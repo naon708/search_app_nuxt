@@ -21,7 +21,7 @@ export const actions = {
     try {
       context.commit(
         'searchBy',
-        await this.$axios.$get(`api/search_results?q=${word}`, { withCredentials: true })
+        await this.$axios.$get(`/api/v1/search_results?q=${word}`)
       )
     } catch (e) {
       console.error("Error:", e);

@@ -101,13 +101,13 @@ export default {
   },
   async created() {
     try {
-      const response = await this.$axios.$get('api/variations', { withCredentials: true })
+      const response = await this.$axios.$get('/api/v1/variations')
       this.variations = response
     } catch (e) {
       console.error("Error:", e);
     }
     try {
-      const response = await this.$axios.$get('api/variation_programs', { withCredentials: true })
+      const response = await this.$axios.$get('/api/v1/variation_programs')
       this.variation_programs = response
     } catch (e) {
       console.error("Error:", e);
@@ -155,14 +155,14 @@ export default {
     },
     markVariation() {
       const params = { variation_id: this.variationId }
-      this.$axios.post('api/mark_variations', params).then(() => {
+      this.$axios.post('/api/v1/mark_variations', params).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
       })
     },
     unmarkVariation() {
-      this.$axios.delete('api/mark_variations/' + this.variationId).then(() => {
+      this.$axios.delete('/api/v1/mark_variations/' + this.variationId).then(() => {
         this.$auth.fetchUser()
       }).catch(e => {
         this.$store.dispatch('setSnackbar', { message: '不具合が発生しました。時間をおいてお試しください' })
