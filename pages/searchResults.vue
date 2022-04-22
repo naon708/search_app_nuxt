@@ -13,7 +13,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="grey--text text--darken-4">{{ result.title }}</v-list-item-title>
-              <v-list-item-subtitle class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
+              <v-list-item-subtitle v-if="result.view_count" class="mt-1">{{ result.view_count | delimitComma }}回視聴</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-card>
