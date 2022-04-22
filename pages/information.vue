@@ -9,7 +9,7 @@
       </thead>
         <tbody>
           <!-- HACK -->
-          <v-subheader class="secondary--text font-weight-medium">2023</v-subheader>
+          <v-subheader v-if="informationYear.includes('2023')" class="secondary--text font-weight-medium">2023</v-subheader>
           <tr v-for="i in information" :key="i.id">
             <td v-if="i.year === '2023'">{{ i.date }}</td>
             <td v-if="i.year === '2023'">{{ i.content }}</td>
@@ -31,6 +31,7 @@ export default {
   data () {
     return {
       information: [],
+      informationYear: [],
     }
   },
   head() {
@@ -47,6 +48,7 @@ export default {
       const querySnapshot = await getDocs(sortQuery);
       querySnapshot.forEach((doc) => {
         this.information.push(doc.data());
+        this.informationYear.push(doc.data().year)
       });
     } catch (e) {
       console.error("Error:", e);
