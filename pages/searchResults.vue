@@ -119,7 +119,7 @@ export default {
       this.video_id = detail.video_id
       this.description = detail.description
       this.view_count = detail.view_count
-      this.urlForEmbedVideo = `http://www.youtube.com/embed/${this.video_id}?modestbranding=1&enablejsapi=1&origin=https://pinap.com`
+      this.urlForEmbedVideo = `https://www.youtube.com/embed/${this.video_id}?modestbranding=1&enablejsapi=1&origin=https://pinap.com`
       this.urlForPlayYoutubeApp = `https://www.youtube.com/watch?v=${this.video_id}`
     },
     resetDialog() {
