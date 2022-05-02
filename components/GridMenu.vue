@@ -65,10 +65,10 @@
             </v-card>
           </v-col>
           <v-col>
-            <v-card height="80" class="d-flex align-center secondary--text" href="https://www.k-ballet.co.jp/">
+            <v-card height="80" class="d-flex align-center secondary--text">
               <div class="ml-2">
-                Favorite...
-                <v-icon color="brown lighten-2" class="mb-1">mdi-cards-heart</v-icon>
+                Coming...
+                <v-icon color="brown lighten-2" class="mb-1">mdi-cogs</v-icon>
               </div>
             </v-card>
           </v-col>
