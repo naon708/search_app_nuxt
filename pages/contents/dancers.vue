@@ -9,7 +9,7 @@
         style="position: relative;"
         @click="openDialog(); insertInDialog(dancer)"
       >
-        {{ dancer.japanese_notation }}
+        {{ dancer.title }}
         <v-card-actions class="mr-1" style="position: absolute; right: 0;">
           <v-icon color="pink lighten-3" size="medium">{{ heartIconInList(dancer) }}</v-icon>
         </v-card-actions>
@@ -24,7 +24,7 @@
             {{ title }}
           </span>
         </v-card-title>
-        <v-card-actions class="mb-2 justify-center">
+        <v-card-actions v-show="japaneseUrl" class="mb-2 justify-center">
           <v-btn color="brown darken-2" width="260" outlined rounded large @click="searchBy(japaneseUrl)">
             <v-icon left>mdi-magnify</v-icon>
             <span class="text-body-1">このまま検索する</span>
@@ -81,6 +81,9 @@ export default {
     },
   },
   watch: {
+    dialog() {
+      this.resetDialog();
+    },
     disableMark() {
       this.$store.watch(() => this.$store.state.snackbar.showing, value => {
         if (!value) { this.disableMark = false }
@@ -100,10 +103,20 @@ export default {
       this.dialog = true;
     },
     insertInDialog(detail) {
-      this.title = detail.japanese_notation;
-      this.japaneseUrl = this.japaneseSearch(detail.japanese_notation);
+      this.title = detail.title;
+      if (detail.japanese_notation) {
+        this.japaneseUrl = this.japaneseSearch(detail.japanese_notation);
+      }
       this.translateUrl = this.translateSearch(detail.universal_notation);
       this.dancerId = detail.id
+    },
+    resetDialog() {
+      if (!this.dialog) {
+        this.title = ''
+        this.japaneseUrl = ''
+        this.translateUrl = ''
+        this.dancerId = null
+      };
     },
     japaneseSearch(word) {
       return `${word}`
