@@ -8,6 +8,9 @@
       </v-card-title>
       <v-img src="swan.png">
       </v-img>
+
+      <in-app-search></in-app-search>
+
       <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/programs" height="14vh" elevation="1">
         バレエの演目を検索
       </v-card>
@@ -36,6 +39,9 @@
         </v-col>
       </v-row>
       <div style="height: 6vh;"></div>
+
+      <in-app-search></in-app-search>
+
       <v-row>
         <v-col cols="12" sm="6" md="6" lg="6">
           <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/programs" height="100">
@@ -63,7 +69,9 @@
 </template>
 
 <script>
+import InAppSearch from '../components/InAppSearch.vue'
 export default {
+  components: { InAppSearch },
 }
 </script>
 
