@@ -1,6 +1,10 @@
 export const state = () => ({
   searchResults: [],
   snackbar: { showing: false, message: '' },
+  programResults: [],
+  dancerResults: [],
+  stepResults: [],
+  variationResults: [],
 })
 
 export const mutations = {
@@ -14,6 +18,12 @@ export const mutations = {
     state.message = ""
     state.snackbar.showing = false
   },
+  inAppSearch (state, payload) {
+    state.programResults = payload.programs
+    state.dancerResults = payload.dancers
+    state.stepResults = payload.steps
+    state.variationResults = payload.variations
+  }
 }
 
 export const actions = {
@@ -33,6 +43,16 @@ export const actions = {
   },
   closeSnackbar(context) {
     context.commit('closeSnackbar')
+  },
+  async inAppSearch(context, word) {
+    try {
+      context.commit(
+        'inAppSearch',
+        await this.$axios.$get(`/api/v1/in_app_searches?q=${word}`)
+      )
+    } catch (e) {
+      console.error("Error:", e);
+    }
   }
 }
 
