@@ -150,7 +150,7 @@ export default {
         this.$auth.user.markedVariationIds.includes(this.variationId) ? this.unmarkVariation() : this.markVariation()
         this.disableMark = false
       } else {
-        this.$store.dispatch('setSnackbar', { message: 'ログインしてお気に入り機能を使いましょう！' })
+        this.$store.dispatch('setSnackbar', { message: 'ログインすると、気になる項目に目印を付けることが出来ます' })
       }
     },
     markVariation() {
