@@ -1,10 +1,7 @@
 export const state = () => ({
   searchResults: [],
   snackbar: { showing: false, message: '' },
-  programResults: [],
-  dancerResults: [],
-  stepResults: [],
-  variationResults: [],
+  inAppSearchResults: [],
 })
 
 export const mutations = {
@@ -19,10 +16,7 @@ export const mutations = {
     state.snackbar.showing = false
   },
   inAppSearch (state, payload) {
-    state.programResults = payload.programs
-    state.dancerResults = payload.dancers
-    state.stepResults = payload.steps
-    state.variationResults = payload.variations
+    state.inAppSearchResults = payload
   }
 }
 
@@ -59,5 +53,17 @@ export const actions = {
 export const getters = {
   searchResults(state) {
     return state.searchResults;
-  }
+  },
+  programResults(state) {
+    return state.inAppSearchResults.programs
+  },
+  variationResults(state) {
+    return state.inAppSearchResults.variations
+  },
+  stepResults(state) {
+    return state.inAppSearchResults.steps
+  },
+  dancerResults(state) {
+    return state.inAppSearchResults.dancers
+  },
 }
