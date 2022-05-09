@@ -28,9 +28,8 @@
       <v-divider></v-divider>
 
       <v-card-actions class="pt-1">
-        <v-icon class="ml-2" color="pink lighten-3" :disabled="disableMark" @click="markAction()">
-          {{ heartIcon }}
-        </v-icon>
+        <mark-action-button :content="content" :content-type="contentType"></mark-action-button>
+
         <v-spacer></v-spacer>
         <v-btn color="secondary" text @click="dialog = false">
           閉じる
@@ -41,7 +40,9 @@
 </template>
 
 <script>
+import MarkActionButton from './dialog/MarkActionButton.vue'
 export default {
+  components: { MarkActionButton },
   props: {
     content: {
       type: Object,
@@ -56,26 +57,7 @@ export default {
       japaneseUrl: '',
       translateUrl: '',
       wikipediaUrl: '',
-      disableMark: false,
     }
-  },
-  computed: {
-    heartIcon() {
-      if (!this.$auth.loggedIn) { return 'mdi-heart-outline' }
-
-      switch (this.contentType) {
-        case 'program':
-          return this.$auth.user.markedProgramIds.includes(this.content.id) ? 'mdi-heart' : 'mdi-heart-outline'
-        case 'variation':
-          return this.$auth.user.markedVariationIds.includes(this.content.id) ? 'mdi-heart' : 'mdi-heart-outline'
-        case 'step':
-          return this.$auth.user.markedStepIds.includes(this.content.id) ? 'mdi-heart' : 'mdi-heart-outline'
-        case 'dancer':
-          return this.$auth.user.markedDancerIds.includes(this.content.id) ? 'mdi-heart' : 'mdi-heart-outline'
-        default:
-          return 'mdi-heart-outline'
-      }
-    },
   },
   watch: {
     dialog() {
