@@ -50,7 +50,7 @@ export default {
     markAction() {
       this.disableMark = true
       if (!this.$auth.loggedIn) {
-        this.$store.dispatch('setSnackbar', { message: 'ログインすると、気になる項目に目印を付けることが出来ます' })
+        this.$store.dispatch('setSnackbar', { message: 'ログインすると、気になる項目に目印を付けられます' })
         return
       }
 

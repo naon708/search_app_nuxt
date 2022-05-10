@@ -1,20 +1,22 @@
 <template>
   <v-container>
     <v-form ref="form" @submit.prevent>
-      <v-row class="d-flex justify-space-around mx-2">
-        <v-text-field
-          v-model="searchWord"
-          label="フリーワード検索"
-          placeholder="例：白鳥"
-          solo
-          rounded
-          height="54"
-          :rules="[rules.required, rules.counter]"
-          @keypress.enter="inAppSearch"
-        ></v-text-field>
-        <v-btn class="mx-2" fab dark color="cyan" elevation="1" @click="inAppSearch">
-          <v-icon dark>mdi-magnify</v-icon>
-        </v-btn>
+      <v-row>
+        <v-col class="d-flex justify-space-around mx-2">
+          <v-text-field
+            v-model="searchWord"
+            label="フリーワード検索"
+            placeholder="例：白鳥"
+            solo
+            rounded
+            height="54"
+            :rules="[rules.required, rules.counter]"
+            @keypress.enter="inAppSearch"
+          ></v-text-field>
+          <v-btn class="mx-2" fab dark color="cyan" elevation="1" @click="inAppSearch">
+            <v-icon dark>mdi-magnify</v-icon>
+          </v-btn>
+        </v-col>
       </v-row>
     </v-form>
   </v-container>
@@ -47,6 +49,6 @@ export default {
 
 <style>
 .theme--light.v-label {
-  color: #5D4037;
+  color: #6D4C41;
 }
 </style>
