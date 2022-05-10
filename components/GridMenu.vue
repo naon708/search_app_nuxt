@@ -39,24 +39,6 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-card to="/userRequest" height="80" class="d-flex align-center secondary--text">
-              <div class="ml-2">
-                <v-icon color="#FFD600" class="mb-1">mdi-lightbulb-on-outline</v-icon><br>
-                リクエスト
-              </div>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card to="/devProfile" height="80" class="d-flex align-center secondary--text">
-              <div class="ml-2">
-                <v-icon color="#FFD600" class="mb-1">mdi-face-man</v-icon><br>
-                開発した人
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
             <v-card to="/shareSns" height="80" class="d-flex align-center secondary--text">
               <div class="ml-2">
                 <v-icon color="#FFD600" class="mb-1">mdi-share-variant</v-icon><br>
@@ -65,10 +47,10 @@
             </v-card>
           </v-col>
           <v-col>
-            <v-card height="80" class="d-flex align-center secondary--text">
+            <v-card to="/devProfile" height="80" class="d-flex align-center secondary--text">
               <div class="ml-2">
-                Coming...
-                <v-icon color="brown lighten-2" class="mb-1">mdi-cogs</v-icon>
+                <v-icon color="#FFD600" class="mb-1">mdi-face-man</v-icon><br>
+                開発した人
               </div>
             </v-card>
           </v-col>
