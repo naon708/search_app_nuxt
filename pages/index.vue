@@ -2,27 +2,10 @@
   <div>
     <!-- Mobile Vertical Screen -->
     <div v-if="$vuetify.breakpoint.xs">
-      <div style="height: 8vh;"></div>
-      <v-card-title class="brown--text pl-8 py-0">
-        <p class="text-body-1 mb-0">バレエの動画を<br>あれこれ見たいあなたへ<br><br>検索をお助けします</p>
-      </v-card-title>
-      <v-img src="swan.png">
-      </v-img>
-
-      <in-app-search></in-app-search>
-
-      <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/programs" height="14vh" elevation="1">
-        バレエの演目を検索
-      </v-card>
-      <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/variations" height="14vh" elevation="1">
-        ヴァリエーションを検索
-      </v-card>
-      <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/steps" height="14vh" elevation="1">
-        パ / ステップを検索
-      </v-card>
-      <v-card class="ma-2 d-flex align-center justify-center secondary--text" to="contents/dancers" height="14vh" elevation="1">
-        バレエダンサーを検索
-      </v-card>
+      <introduction-area></introduction-area>
+      <search-area></search-area>
+      <v-divider></v-divider>
+      <list-area></list-area>
     </div>
 
     <!-- Others -->
@@ -70,8 +53,11 @@
 
 <script>
 import InAppSearch from '../components/InAppSearch.vue'
+import IntroductionArea from '../components/topPage/IntroductionArea.vue'
+import SearchArea from '../components/topPage/SearchArea.vue'
+import ListArea from '../components/topPage/ListArea.vue'
 export default {
-  components: { InAppSearch },
+  components: { InAppSearch, IntroductionArea, SearchArea, ListArea },
 }
 </script>
 
