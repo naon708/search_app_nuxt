@@ -14,14 +14,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Pinap',
-    title: 'Pinap',
+    titleTemplate: '%s | Pinap - ピナップ',
+    title: 'Pinap - ピナップ | バレエ動画をラクラク検索',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'keywords', content: 'バレエ, 動画, 演目, パ, ダンサー, ヴァリエーション' },
-      { hid: 'description', name: 'description', content: 'バレエ用語の一覧から、スムーズに動画検索できるサービスです' },
+      { hid: 'description', name: 'description', content: 'バレエ用語の一覧から数タップで動画検索できるサービスです' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Pinap' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'https://pinap.jp' },
