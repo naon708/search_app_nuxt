@@ -5,7 +5,7 @@ export default ({store}) => {
     key: 'searchResults',
     paths: ['searchResults'],
     storage: window.sessionStorage
-  })
+  })(store)
   createPersistedState({
     key: 'inAppSearchResults',
     paths: ['inAppSearchResults'],
