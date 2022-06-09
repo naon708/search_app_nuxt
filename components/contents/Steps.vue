@@ -5,13 +5,13 @@
       パ / ステップ
     </v-card-subtitle>
 
-    <div v-if="stepResults.length">
-      <contents-card v-for="step of stepResults" :key="step.japanese_notation" :content="step" :content-type="contentType">
-      </contents-card>
-    </div>
-    <div v-else>
-      <v-card-text class="pa-0 text-center brown--text">一致する項目はありませんでした。</v-card-text>
-    </div>
+    <contents-card
+      v-for="step of stepResults"
+      :key="step.japanese_notation"
+      :content="step"
+      :content-type="contentType"
+    >
+    </contents-card>
   </div>
 </template>
 

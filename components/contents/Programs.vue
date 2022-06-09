@@ -5,13 +5,13 @@
       演目
     </v-card-subtitle>
 
-    <div v-if="programResults.length">
-      <contents-card v-for="program of programResults" :key="program.japanese_notation" :content="program" :content-type="contentType">
-      </contents-card>
-    </div>
-    <div v-else>
-      <v-card-text class="pa-0 text-center brown--text">一致する項目はありませんでした。</v-card-text>
-    </div>
+    <contents-card
+      v-for="program of programResults"
+      :key="program.japanese_notation"
+      :content="program"
+      :content-type="contentType"
+    >
+    </contents-card>
   </div>
 </template>
 
