@@ -25,8 +25,8 @@ export default {
       { hid: 'og:site_name', property: 'og:site_name', content: 'Pinap' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'https://pinap.jp' },
-      { hid: 'og:title', property: 'og:title', content: 'Pinap' },
-      { hid: 'og:description', property: 'og:description', content: 'バレエ用語をラクラク検索！' },
+      { hid: 'og:title', property: 'og:title', content: 'Pinap | ピナップ' },
+      { hid: 'og:description', property: 'og:description', content: 'バレエ用語でラクラク動画検索！' },
       { hid: 'og:image', property: 'og:image', content: 'https://pinap.jp/pinap_ogp.png' },
       { name: 'twitter:card', content: 'summary_large_image' }  // twitterの画像サイズ
     ],
