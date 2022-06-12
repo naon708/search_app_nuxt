@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <v-card-title class="text-body-1 brown--text text--lighten-2 justify-center mt-8 mb-1">
+        <v-card-title class="text-body-1 brown--text text--lighten-2 justify-center mb-1">
           一覧から探す
         </v-card-title>
       </v-col>

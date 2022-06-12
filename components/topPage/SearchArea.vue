@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 240px" class="align-center">
+  <div style="height: 200px" class="align-center">
     <v-row>
       <v-col>
         <v-card-title class="text-body-1 brown--text text--lighten-2 justify-center mb-2">

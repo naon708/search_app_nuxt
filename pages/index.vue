@@ -3,9 +3,9 @@
     <!-- Mobile Vertical Screen -->
     <div v-if="$vuetify.breakpoint.xs">
       <introduction-area></introduction-area>
+      <list-area class="mb-12"></list-area>
+      <!-- <v-divider></v-divider> -->
       <search-area></search-area>
-      <v-divider></v-divider>
-      <list-area></list-area>
     </div>
 
     <!-- Others -->
@@ -27,7 +27,8 @@
 
       <div class="mt-16">
           <p class="text-center brown--text text--lighten-2 text-h6">気になる単語で検索してみる</p>
-        <in-app-search class="mt-5"></in-app-search>
+        <auto-complete class="mt-5"></auto-complete>
+        <!-- <in-app-search class="mt-5"></in-app-search> -->
       </div>
 
       <div class="mt-16">
@@ -46,12 +47,13 @@
 </template>
 
 <script>
-import InAppSearch from '../components/InAppSearch.vue'
+// import InAppSearch from '../components/InAppSearch.vue'
 import IntroductionArea from '../components/topPage/IntroductionArea.vue'
 import SearchArea from '../components/topPage/SearchArea.vue'
 import ListArea from '../components/topPage/ListArea.vue'
+import AutoComplete from '../components/AutoComplete.vue'
 export default {
-  components: { InAppSearch, IntroductionArea, SearchArea, ListArea },
+  components: { IntroductionArea, SearchArea, ListArea, AutoComplete },
   data() {
     return {
       items: [
