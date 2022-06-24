@@ -1,7 +1,6 @@
 <template>
   <div>
-    <in-app-search v-if="$vuetify.breakpoint.xs"></in-app-search>
-    <auto-complete v-else></auto-complete>
+    <in-app-search></in-app-search>
 
     <div class="mb-16">
       <contents-programs v-if="programResults.length" class="mb-10"></contents-programs>
